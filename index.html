@@ -73,6 +73,13 @@ h2.sec{font-size:20px;margin:26px 0 4px}
 .sec-sub{color:var(--muted);margin:0 0 12px;font-size:14px}
 .ex{background:var(--paper);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden}
 .ex-head{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;background:none;border:0;padding:14px 14px 10px;min-height:56px}
+.ex.min .ex-head{align-items:center;padding-bottom:14px}
+.ex-text{flex:1;min-width:0}
+.chev{flex:none;color:var(--muted);transition:transform .15s}
+.ex:not(.min) .chev{margin-top:6px}
+.ex.min .chev{transform:rotate(-90deg)}
+.badge.ok{background:var(--teal);color:var(--teal-ink)}
+.link.dt{margin-left:60px;padding:2px 0 8px;font-size:14px}
 .badge{flex:none;min-width:34px;height:34px;border-radius:8px;background:var(--soft);display:grid;place-items:center;font-weight:800;font-size:15px}
 .ex-title{font-weight:700;font-size:17px}
 .ex-meta{color:var(--muted);font-size:14px}
@@ -177,8 +184,8 @@ const EX = {
  24:{n:'Sittende hantelpress m/støtte',t:'w',s:3,r:10,d:'Sitt med god støtte i ryggen og hantlene på utsiden av skuldrene. Press opp til strake armer over hodet. Senk rolig.'}
 };
 const DAYS = {
- 1:{title:'Dag 1',prog:'Program 1',core:[1,4,2],main:[7,8,9,10,11,12,13,14,15,16]},
- 2:{title:'Dag 2',prog:'Program 2',core:[3,5,6],main:[17,18,19,20,21,22,23,24]}
+ 1:{title:'Dag 1',prog:'Styrke',core:[1,4,2],main:[7,8,9,10,11,19,20,22,23,24]},
+ 2:{title:'Dag 2',prog:'Styrke',core:[3,5,6],main:[12,13,14,15,17,18,21]}
 };
 const STRETCH = [
  {id:25,n:'Tøyning av bryst mot vegg',dose:'30 sek × 3 sett, hver side'},
@@ -261,7 +268,13 @@ function newDraft(day){
     }
     sets[id] = arr;
   });
-  return {day, started:new Date().toISOString(), sets, stretch:{}, open:{}};
+  return {day, started:new Date().toISOString(), sets, stretch:{}, open:{}, min:{}};
+}
+function reconcileDraft(){
+  draft.open = draft.open || {}; draft.min = draft.min || {}; draft.stretch = draft.stretch || {};
+  const fresh = newDraft(draft.day), d = DAYS[draft.day], ids = new Set([...d.core, ...d.main]);
+  Object.keys(fresh.sets).forEach(id => { if(!draft.sets[id]) draft.sets[id] = fresh.sets[id]; });
+  Object.keys(draft.sets).forEach(id => { if(!ids.has(Number(id)) && !draft.sets[id].some(s => s.done)) delete draft.sets[id]; });
 }
 
 /* ---------- Visning ---------- */
@@ -306,7 +319,7 @@ function homeView(){
     <h1>${DAYS[nd].title}</h1>
     <div class="week" role="img" aria-label="${wc} av 3 økter denne uken">${dots}<span class="t">${wc} av 3 denne uken</span></div>
   </section>
-  <button class="btn" data-act="start" data-day="${nd}">Start ${DAYS[nd].title}, ${DAYS[nd].prog}</button>
+  <button class="btn" data-act="start" data-day="${nd}">Start ${DAYS[nd].title}</button>
   <button class="btn alt" data-act="start" data-day="${od}">Start ${DAYS[od].title} i stedet</button>
   <div class="stats">
     <div><b class="num">${sessions.length}</b><span>økter logget</span></div>
@@ -335,13 +348,16 @@ function exCard(id){
       <button class="chk" data-act="toggle" data-k="${id}:${i}" aria-pressed="${s.done}" aria-label="Sett ${i+1} ferdig">${CHECK}</button></div>`;
   }).join('');
   const tag = ex.t==='bw' ? ' · kroppsvekt' : '';
-  return `<article class="ex">
-    <button class="ex-head" data-act="desc" data-id="${id}" aria-expanded="${!!open}">
-      <span class="badge num">${id}</span>
-      <span><span class="ex-title">${ex.n}</span><br><span class="ex-meta">${ex.s} × ${ex.r}${tag}</span></span>
+  const min = !!draft.min[id], allDone = sets.every(s => s.done);
+  return `<article class="ex ${min?'min':''}">
+    <button class="ex-head" data-act="min" data-id="${id}" aria-expanded="${!min}" aria-label="${id}. ${ex.n}, ${min?'vis':'skjul'} øvelsen">
+      <span class="badge num ${allDone?'ok':''}">${id}</span>
+      <span class="ex-text"><span class="ex-title">${ex.n}</span>${min?'':`<br><span class="ex-meta">${ex.s} × ${ex.r}${tag}</span>`}</span>
+      <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
     </button>
+    ${min?'':`<button class="link dt" data-act="desc" data-id="${id}" aria-expanded="${!!open}">${open?'Skjul beskrivelse':'Vis beskrivelse'}</button>
     ${open?`<p class="desc">${ex.d}</p>`:''}${lastTxt}
-    <div class="sets">${rows}</div></article>`;
+    <div class="sets">${rows}</div>`}</article>`;
 }
 
 function workoutView(){
@@ -351,6 +367,7 @@ function workoutView(){
     <div class="meta"><b>${s.n}</b><span>${s.dose}</span></div></div>`).join('');
   return `<div class="top"><button class="link" data-act="leave">‹ Tilbake</button></div>
   <h1 style="font-size:32px;font-weight:800">${d.title}</h1>
+  <div class="row" style="margin-top:12px"><button class="btn small alt" data-act="minall">Minimer alle</button><button class="btn small alt" data-act="expall">Utvid alle</button></div>
   <h2 class="sec">Kjerne</h2><p class="sec-sub">Velg 2–3 øvelser. Sett du ikke huker av, blir ikke lagret.</p>
   ${d.core.map(exCard).join('')}
   <h2 class="sec">${d.prog}</h2><p class="sec-sub">Vekten fra forrige økt er fylt inn. Endre den ved behov, og huk av når settet er gjort.</p>
@@ -409,7 +426,10 @@ function progressView(){
   const ms = metricsFor(progEx);
   if(!metric || !ms.find(m=>m[0]===metric)) metric = ms[0][0];
   const opt = d => d.core.concat(d.main).map(id => `<option value="${id}" ${id===progEx?'selected':''}>${id}. ${EX[id].n}${lastFor(id)?'':' (ingen data)'}</option>`).join('');
-  const sel = `<select id="exsel" aria-label="Velg øvelse"><optgroup label="Dag 1">${opt(DAYS[1])}</optgroup><optgroup label="Dag 2">${opt(DAYS[2])}</optgroup></select>`;
+  const inDays = new Set([...DAYS[1].core, ...DAYS[1].main, ...DAYS[2].core, ...DAYS[2].main]);
+  const others = SORTED_IDS.filter(id => !inDays.has(id) && lastFor(id));
+  const otherGrp = others.length ? `<optgroup label="Andre">${others.map(id => `<option value="${id}" ${id===progEx?'selected':''}>${id}. ${EX[id].n}</option>`).join('')}</optgroup>` : '';
+  const sel = `<select id="exsel" aria-label="Velg øvelse"><optgroup label="Dag 1">${opt(DAYS[1])}</optgroup><optgroup label="Dag 2">${opt(DAYS[2])}</optgroup>${otherGrp}</select>`;
   const seg = ms.length>1 ? `<div class="seg">${ms.map(([k,l])=>`<button data-act="metric" data-m="${k}" aria-pressed="${k===metric}">${l}</button>`).join('')}</div>` : '<div style="height:12px"></div>';
   const unit = metric==='reps' ? 'reps' : metric==='vol' ? 'kg' : 'kg';
   const pts = pointsFor(progEx, metric);
@@ -496,10 +516,16 @@ document.addEventListener('click', e => {
   else if(a==='discard'){ draft = null; save('draft', null); render(); }
   else if(a==='leave'){ persistDraft(); wake(false); view='home'; render(); window.scrollTo(0,0); }
   else if(a==='desc'){ const id = b.dataset.id; draft.open[id] = !draft.open[id]; const y = window.scrollY; render(); window.scrollTo(0,y); persistDraftSoon(); }
+  else if(a==='min'){ const id = b.dataset.id; draft.min[id] = !draft.min[id]; const y = window.scrollY; render(); window.scrollTo(0,y); persistDraftSoon(); }
+  else if(a==='minall' || a==='expall'){
+    const d = DAYS[draft.day]; [...d.core, ...d.main].forEach(id => { draft.min[id] = (a==='minall'); });
+    render(); window.scrollTo(0,0); persistDraftSoon();
+  }
   else if(a==='toggle'){
     const [id,i] = b.dataset.k.split(':'); const s = draft.sets[id][i];
     s.done = !s.done; b.setAttribute('aria-pressed', s.done); if(s.done && navigator.vibrate) navigator.vibrate(12);
     b.closest('.set').classList.toggle('done', s.done);
+    const bd = b.closest('.ex').querySelector('.badge'); if(bd) bd.classList.toggle('ok', draft.sets[id].every(x => x.done));
     updateCounter(); persistDraftSoon();
   }
   else if(a==='stretch'){
@@ -561,6 +587,7 @@ document.addEventListener('change', e => {
   sessions = await load('sessions', []);
   draft = await load('draft', null);
   if(draft && !DAYS[draft.day]) draft = null;
+  if(draft) reconcileDraft();
   render();
 })();
 

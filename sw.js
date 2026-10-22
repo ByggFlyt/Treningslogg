@@ -1,6 +1,6 @@
 /* Service worker for Treningslogg: cacher appen slik at den virker helt uten nett.
    Øk CACHE-versjonen ved hver oppdatering av filene. */
-const CACHE = 'treningslogg-v1';
+const CACHE = 'treningslogg-v2';
 const ASSETS = [
   './',
   './index.html',
