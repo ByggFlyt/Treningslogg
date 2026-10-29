@@ -44,7 +44,7 @@ nav.bar{padding:10px 14px calc(10px + env(safe-area-inset-bottom));gap:14px}
 nav.bar .barinfo{flex:1;font-weight:700;line-height:1.2}
 nav.bar .barinfo small{display:block;color:var(--muted);font-weight:600;font-size:13px}
 nav.bar .barinfo .err{color:var(--danger)}
-nav.bar .btn{flex:none;min-height:52px;padding:12px 22px}
+nav.bar .btn{flex:none;width:auto;min-height:52px;padding:12px 20px;font-size:17px;margin-top:0}
 
 /* Hjem */
 .hero{padding:8px 0 20px}
@@ -284,7 +284,11 @@ function renderNav(){
   const n = $('#nav');
   if(view==='workout'){
     n.className = 'bar';
-    n.innerHTML = '<div class="barinfo"><span id="counter"></span><small id="msg" role="alert"></small></div><button class="btn" data-act="finish">Fullfør økt</button>';
+    if(confirming){
+      n.innerHTML = '<div class="barinfo"><span id="counter"></span><small>Lagre og avslutte økten?</small></div><button class="btn alt" data-act="finishno">Nei</button><button class="btn" data-act="finishyes">Ja, lagre</button>';
+    } else {
+      n.innerHTML = '<div class="barinfo"><span id="counter"></span><small id="msg" role="alert"></small></div><button class="btn" data-act="finish">' + (draft && draft.editId ? 'Lagre endringer' : 'Fullfør økt') + '</button>';
+    }
     return;
   }
   n.className = '';
@@ -295,6 +299,8 @@ function renderNav(){
 }
 
 function render(){
+  if(view!=='workout') confirming = false;
+  discArm = false;
   renderNav();
   const app = $('#app');
   if(view==='home') app.innerHTML = homeView();
@@ -309,8 +315,11 @@ function homeView(){
   const nd = nextDay(), od = nd===1?2:1, wc = weekCount();
   const last = sortedSessions().slice(-1)[0];
   const dots = [0,1,2].map(i => `<div class="tally ${i<wc?'on':''}">${i<wc?CHECK.replace('width="24" height="24"','width="18" height="18"'):''}</div>`).join('');
-  const resume = draft ? `<div class="banner"><p><b>${DAYS[draft.day].title} er påbegynt.</b> ${countDone()} av ${countAll()} sett er huket av.</p>
-    <div class="row"><button class="btn small" data-act="resume">Fortsett økten</button><button class="btn small alt" data-act="discard">Forkast</button></div></div>` : '';
+  const resume = draft ? (draft.editId
+    ? `<div class="banner"><p><b>Du redigerer ${DAYS[draft.day].title} fra ${dateShort(draft.date)}.</b> Den lagrede økten er uendret til du trykker «Lagre endringer».</p>
+    <div class="row"><button class="btn small" data-act="resume">Fortsett redigering</button><button class="btn small alt" data-act="discard">Avbryt redigering</button></div></div>`
+    : `<div class="banner"><p><b>${DAYS[draft.day].title} er påbegynt.</b> ${countDone()} av ${countAll()} sett er huket av.</p>
+    <div class="row"><button class="btn small" data-act="resume">Fortsett økten</button><button class="btn small alt" data-act="discard">Forkast</button></div></div>`) : '';
   const hint = (isIos && !isStandalone && !hintDismissed) ? `<div class="banner"><p><b>Bruk den som en egen app, også uten nett.</b> Trykk på Del-ikonet i Safari og velg «Legg til på Hjem-skjerm». Åpne appen fra hjemskjermen etterpå, og start loggføringen der. Data i Safari og i hjemskjerm-appen lagres hver for seg.</p><button class="btn small alt" data-act="hint">Skjul</button></div>` : '';
   const status = offlineReady ? '<p class="sec-sub" style="margin-top:18px">Klar for bruk uten nett. Alt lagres på denne enheten.</p>' : '';
   return `${hint}${resume}
@@ -321,10 +330,11 @@ function homeView(){
   </section>
   <button class="btn" data-act="start" data-day="${nd}">Start ${DAYS[nd].title}</button>
   <button class="btn alt" data-act="start" data-day="${od}">Start ${DAYS[od].title} i stedet</button>
+  <p class="msg" id="hmsg" role="alert" style="min-height:0"></p>
   <div class="stats">
     <div><b class="num">${sessions.length}</b><span>økter logget</span></div>
     <div><b class="num">${last?dateShort(last.date):'–'}</b><span>siste økt</span></div>
-  </div>${status}`;
+  </div>${last && !draft ? `<button class="link" data-act="edit" data-id="${last.id}" style="margin-top:8px">Rediger siste økt (${dateShort(last.date)})</button>` : ''}${status}`;
 }
 
 function countAll(){ return Object.values(draft.sets).reduce((a,s)=>a+s.length,0); }
@@ -332,7 +342,7 @@ function countDone(){ return Object.values(draft.sets).reduce((a,s)=>a+s.filter(
 function updateCounter(){ const el = $('#counter'); if(el) el.textContent = countDone()+' av '+countAll()+' sett'; const m = $('#msg'); if(m){ m.textContent=''; m.className=''; } }
 
 function exCard(id){
-  const ex = EX[id], sets = draft.sets[id], last = lastFor(id), open = draft.open[id];
+  const ex = EX[id], sets = draft.sets[id], last = lastFor(id, draft.editId ? draft.date : undefined), open = draft.open[id];
   let lastTxt = '';
   if(last){
     const txt = ex.t==='w'
@@ -367,11 +377,13 @@ function workoutView(){
     <div class="meta"><b>${s.n}</b><span>${s.dose}</span></div></div>`).join('');
   return `<div class="top"><button class="link" data-act="leave">‹ Tilbake</button></div>
   <h1 style="font-size:32px;font-weight:800">${d.title}</h1>
+  ${draft.editId ? `<div class="banner" style="margin-top:12px"><p style="margin:0"><b>Du redigerer økten fra ${dateLong(draft.date)}.</b> Endringene erstatter den lagrede økten, det opprettes ingen ny.</p></div>` : ''}
   <div class="row" style="margin-top:12px"><button class="btn small alt" data-act="minall">Minimer alle</button><button class="btn small alt" data-act="expall">Utvid alle</button></div>
   <h2 class="sec">Kjerne</h2><p class="sec-sub">Velg 2–3 øvelser. Sett du ikke huker av, blir ikke lagret.</p>
   ${d.core.map(exCard).join('')}
   <h2 class="sec">${d.prog}</h2><p class="sec-sub">Vekten fra forrige økt er fylt inn. Endre den ved behov, og huk av når settet er gjort.</p>
   ${d.main.map(exCard).join('')}
+  ${(draft.extra && draft.extra.length) ? `<h2 class="sec">Fra tidligere oppsett</h2><p class="sec-sub">Disse øvelsene var med i den lagrede økten.</p>${draft.extra.map(exCard).join('')}` : ''}
   <h2 class="sec">Tøyning</h2><p class="sec-sub">Etter behov.</p>${stretch}
   `;
 }
@@ -381,9 +393,9 @@ function doneView(){
   const list = prs.length
     ? prs.map(p => `<div class="pr"><i></i><div><b class="num">${fmt(p.kg)} kg</b> · ${EX[p.id].n}<br><span style="color:var(--muted);font-size:14px">Forrige rekord: ${fmt(p.prev)} kg</span></div></div>`).join('')
     : '<p style="color:var(--muted)">Ingen nye vektrekorder denne gangen. Jevn og god innsats teller også.</p>';
-  return `<section class="hero"><p class="lead">Økten er lagret</p><h1>${DAYS[lastSaved.day].title} ferdig</h1></section>
+  return `<section class="hero"><p class="lead">${lastSaved.edited ? 'Endringene er lagret' : 'Økten er lagret'}</p><h1>${DAYS[lastSaved.day].title} ferdig</h1></section>
   <h2 class="sec" style="margin-top:0">${prs.length?'Nye rekorder':'Rekorder'}</h2><div style="margin-top:10px">${list}</div>
-  <div style="margin-top:24px"><button class="btn" data-act="nav" data-v="progress">Se fremgang</button><button class="btn alt" data-act="nav" data-v="home">Til forsiden</button></div>`;
+  <div style="margin-top:24px"><button class="btn" data-act="nav" data-v="progress">Se fremgang</button><button class="btn alt" data-act="edit" data-id="${lastSaved.id}">Rediger økten</button><button class="btn alt" data-act="nav" data-v="home">Til forsiden</button></div>`;
 }
 
 function metricsFor(id){
@@ -446,11 +458,35 @@ function progressView(){
       <div><b class="num ${diff>0?'up':''}">${diffTxt}</b><span>${pts.length<2?'trenger to økter':'siden start'+(pct?` (${pct>0?'+':''}${pct} %)`:'')}</span></div>
       <div><b class="num">${fmt(Math.max(...pts.map(p=>p.v)))}</b><span>best (${unit})</span></div>
     </div>
-    <table><thead><tr><th>Dato</th><th>Sett</th></tr></thead><tbody>${[...pts].reverse().map(p=>`<tr><td>${dateShort(p.date)}</td><td class="num">${EX[progEx].t==='w'?p.sets.map(s=>(s.kg!=null?fmt(s.kg):'?')+'×'+s.reps).join(', '):p.sets.map(s=>s.reps).join(', ')+' reps'}</td></tr>`).join('')}</tbody></table>`;
+    <table><thead><tr><th>Dato</th><th>Sett</th></tr></thead><tbody>${[...pts].reverse().map(p=>`<tr><td>${dateShort(p.date)}</td><td class="num">${setsText(progEx, p.sets)}</td></tr>`).join('')}</tbody></table>`;
   }
   return `<h1 style="font-size:32px;font-weight:800;margin-bottom:14px">Fremgang</h1>${sel}${seg}${body}`;
 }
 
+function setsText(id, sets){
+  if(EX[id].t !== 'w') return sets.map(x => x.reps).join(', ') + ' reps';
+  const groups = [];
+  sets.forEach(x => { const g = groups[groups.length-1]; if(g && g.kg === x.kg) g.reps.push(x.reps); else groups.push({kg:x.kg, reps:[x.reps]}); });
+  return groups.map(g => (g.kg != null ? fmt(g.kg)+' kg' : 'uten vekt') + ' × ' + g.reps.join(', ') + ' reps').join('<br>');
+}
+function exerciseHistory(){
+  const rows = SORTED_IDS.filter(id => lastFor(id)).map(id => {
+    const ex = EX[id];
+    const pts = sortedSessions().filter(s => s.data[id] && s.data[id].length).map(s => ({date:s.date, sets:s.data[id]}));
+    const lastP = pts[pts.length-1], n = pts.length + (pts.length===1 ? ' økt' : ' økter');
+    let sub;
+    if(ex.t === 'w'){
+      const all = pts.flatMap(p => p.sets.map(x => x.kg).filter(k => k != null));
+      const lk = lastP.sets.map(x => x.kg).filter(k => k != null);
+      sub = 'Sist ' + (lk.length ? fmt(Math.max(...lk))+' kg' : '–') + (all.length ? ' · Best '+fmt(Math.max(...all))+' kg' : '') + ' · ' + n;
+    } else sub = 'Sist ' + lastP.sets.reduce((a,x) => a+(x.reps||0), 0) + ' reps · ' + n;
+    const body = [...pts].reverse().map(p => `<div class="s-ex"><b>${dateLong(p.date)}</b><div class="num">${setsText(id, p.sets)}</div></div>`).join('');
+    return `<details class="s"><summary><div><b>${id}. ${ex.n}</b><span>${sub}</span></div><span aria-hidden="true">›</span></summary><div class="s-body">${body}</div></details>`;
+  });
+  return rows.length ? rows.join('') : `<div class="empty">Ingen økter er logget ennå. Start en økt fra Trening-fanen.</div>`;
+}
+let histMode = 'session';
+let confirming = false, discArm = false;
 let delArm = null;
 function historyView(){
   const list = [...sortedSessions()].reverse();
@@ -459,15 +495,18 @@ function historyView(){
     const nSets = ids.reduce((a,id)=>a+s.data[id].length,0);
     const body = ids.map(id => {
       const ex = EX[id]; if(!ex) return '';
-      const t = ex.t==='w' ? s.data[id].map(x=>(x.kg!=null?fmt(x.kg):'?')+'×'+x.reps).join(', ') : s.data[id].map(x=>x.reps).join(', ')+' reps';
+      const t = setsText(id, s.data[id]);
       return `<div class="s-ex"><b>${id}. ${ex.n}</b><div class="num">${t}</div></div>`;
     }).join('');
     const st = (s.stretch||[]).length ? `<div class="s-ex"><b>Tøyning</b><div>${s.stretch.map(id=>(STRETCH.find(x=>x.id===id)||{}).n).filter(Boolean).join(', ')}</div></div>` : '';
     const armed = delArm===s.id;
     return `<details class="s"><summary><div><b>${dateLong(s.date)}</b><span>${DAYS[s.day].title}, ${nSets} sett</span></div><span aria-hidden="true">›</span></summary>
-      <div class="s-body">${body}${st}<button class="del" data-act="del" data-id="${s.id}">${armed?'Trykk igjen for å slette':'Slett økt'}</button></div></details>`;
+      <div class="s-body">${body}${st}<button class="btn small alt" data-act="edit" data-id="${s.id}" style="margin:10px 8px 0 0">Rediger økt</button><button class="del" data-act="del" data-id="${s.id}">${armed?'Trykk igjen for å slette':'Slett økt'}</button></div></details>`;
   }).join('') : `<div class="empty">Ingen økter er logget ennå. Start en økt fra Trening-fanen.</div>`;
-  return `<h1 style="font-size:32px;font-weight:800;margin-bottom:14px">Historikk</h1>${items}
+  return `<h1 style="font-size:32px;font-weight:800;margin-bottom:14px">Historikk</h1>
+  <p class="msg" id="hmsg" role="alert" style="min-height:0;margin:0 0 8px"></p>
+  <div class="seg" style="margin-top:0"><button data-act="hmode" data-m="session" aria-pressed="${histMode==='session'}">Per økt</button><button data-act="hmode" data-m="exercise" aria-pressed="${histMode==='exercise'}">Per øvelse</button></div>
+  ${histMode==='exercise' ? exerciseHistory() : items}
   <details class="backup"><summary>Sikkerhetskopi</summary>
     <p class="sec-sub">Eksporter all historikk som tekst, eller lim inn en tidligere kopi for å gjenopprette. Import erstatter eksisterende data.</p>
     <textarea id="bk" aria-label="Sikkerhetskopi som JSON"></textarea>
@@ -481,23 +520,48 @@ function persistDraft(){ save('draft', draft); }
 let t = null;
 function persistDraftSoon(){ clearTimeout(t); t = setTimeout(persistDraft, 400); }
 
+function editSession(id){
+  const s = sessions.find(x => x.id===id); if(!s) return;
+  if(draft && draft.editId!==id){
+    const m = $('#hmsg'); if(m) m.textContent = 'Du har en påbegynt økt. Fortsett eller forkast den først (Trening-fanen).';
+    return;
+  }
+  if(!draft){
+    const dr = newDraft(s.day), dayIds = new Set([...DAYS[s.day].core, ...DAYS[s.day].main]);
+    dr.editId = s.id; dr.date = s.date; dr.extra = [];
+    Object.entries(s.data).forEach(([k, arr]) => {
+      const xid = Number(k), ex = EX[xid]; if(!ex) return;
+      if(!dayIds.has(xid)) dr.extra.push(xid);
+      const out = arr.map(x => ({kg: x.kg!=null ? fmt(x.kg) : '', reps: String(x.reps), done:true}));
+      for(let i = out.length; i < ex.s; i++) out.push({kg: ex.t==='w' && out.length ? out[out.length-1].kg : '', reps:String(ex.r), done:false});
+      dr.sets[xid] = out;
+    });
+    dr.stretch = {}; (s.stretch || []).forEach(x => { dr.stretch[x] = true; });
+    draft = dr; persistDraft();
+  }
+  view = 'workout'; wake(true); render(); window.scrollTo(0,0);
+}
+
 function finish(){
-  if(countDone()===0 && !Object.keys(draft.stretch).length){ const m = $('#msg'); m.textContent = 'Huk av minst ett sett først.'; m.className = 'err'; return; }
+  if(countDone()===0 && !Object.keys(draft.stretch).length){ const m = $('#msg'); if(m){ m.textContent = 'Huk av minst ett sett først.'; m.className = 'err'; } return; }
   const data = {};
   Object.entries(draft.sets).forEach(([id,sets]) => {
     const done = sets.filter(s=>s.done).map(s => ({kg: EX[id].t==='w' ? num(s.kg) : null, reps: num(s.reps)||0}));
     if(done.length) data[id] = done;
   });
-  const date = new Date().toISOString();
+  const editing = draft.editId || null;
+  const date = editing ? draft.date : new Date().toISOString();
   const prs = [];
   Object.entries(data).forEach(([id,sets]) => {
     if(EX[id].t!=='w') return;
     const mx = Math.max(...sets.map(s=>s.kg||0));
-    let prev = 0; sessions.forEach(s => (s.data[id]||[]).forEach(x => { if(x.kg>prev) prev = x.kg; }));
+    let prev = 0; sessions.forEach(s => { if(s.id===editing) return; (s.data[id]||[]).forEach(x => { if(x.kg>prev) prev = x.kg; }); });
     if(prev>0 && mx>prev) prs.push({id:Number(id), kg:mx, prev});
   });
-  sessions.push({id:Date.now(), date, day:draft.day, data, stretch:Object.keys(draft.stretch).map(Number)});
-  lastSaved = {day:draft.day, prs};
+  const rec = {id: editing || Date.now(), date, day:draft.day, data, stretch:Object.keys(draft.stretch).map(Number)};
+  if(editing){ rec.edited = new Date().toISOString(); const i = sessions.findIndex(s => s.id===editing); if(i>=0) sessions[i] = rec; else sessions.push(rec); }
+  else sessions.push(rec);
+  lastSaved = {id:rec.id, day:draft.day, prs, edited:!!editing};
   draft = null;
   save('sessions', sessions); save('draft', null);
   wake(false); view = 'done'; render(); window.scrollTo(0,0);
@@ -509,11 +573,17 @@ document.addEventListener('click', e => {
   if(a==='nav'){ view = b.dataset.v; delArm = null; render(); window.scrollTo(0,0); }
   else if(a==='start'){
     const day = Number(b.dataset.day);
-    if(draft && draft.day!==day){ draft = newDraft(day); } else if(!draft){ draft = newDraft(day); }
+    if(draft && (draft.day!==day || draft.editId)){
+      const m = $('#hmsg');
+      if(m) m.textContent = draft.editId ? 'Du redigerer en lagret økt. Fortsett eller avbryt den først.' : 'Du har en påbegynt ' + DAYS[draft.day].title + '. Fortsett eller forkast den først.';
+      return;
+    }
+    if(!draft) draft = newDraft(day);
     persistDraft(); view='workout'; wake(true); render(); window.scrollTo(0,0);
   }
   else if(a==='resume'){ view='workout'; wake(true); render(); window.scrollTo(0,0); }
-  else if(a==='discard'){ draft = null; save('draft', null); render(); }
+  else if(a==='discard'){ if(!discArm){ discArm = true; b.textContent = 'Trykk igjen for å bekrefte'; return; } discArm = false; draft = null; save('draft', null); render(); }
+  else if(a==='edit') editSession(Number(b.dataset.id));
   else if(a==='leave'){ persistDraft(); wake(false); view='home'; render(); window.scrollTo(0,0); }
   else if(a==='desc'){ const id = b.dataset.id; draft.open[id] = !draft.open[id]; const y = window.scrollY; render(); window.scrollTo(0,y); persistDraftSoon(); }
   else if(a==='min'){ const id = b.dataset.id; draft.min[id] = !draft.min[id]; const y = window.scrollY; render(); window.scrollTo(0,y); persistDraftSoon(); }
@@ -532,7 +602,13 @@ document.addEventListener('click', e => {
     const id = b.dataset.id; if(draft.stretch[id]) delete draft.stretch[id]; else draft.stretch[id] = true;
     b.setAttribute('aria-pressed', !!draft.stretch[id]); persistDraftSoon();
   }
-  else if(a==='finish') finish();
+  else if(a==='finish'){
+    if(countDone()===0 && !Object.keys(draft.stretch).length){ const m = $('#msg'); if(m){ m.textContent = 'Huk av minst ett sett først.'; m.className = 'err'; } }
+    else { confirming = true; renderNav(); updateCounter(); }
+  }
+  else if(a==='finishyes'){ confirming = false; finish(); }
+  else if(a==='finishno'){ confirming = false; renderNav(); updateCounter(); }
+  else if(a==='hmode'){ histMode = b.dataset.m; render(); }
   else if(a==='metric'){ metric = b.dataset.m; render(); }
   else if(a==='del'){
     const id = Number(b.dataset.id);
