@@ -79,7 +79,6 @@ h2.sec{font-size:20px;margin:26px 0 4px}
 .ex:not(.min) .chev{margin-top:6px}
 .ex.min .chev{transform:rotate(-90deg)}
 .badge.ok{background:var(--teal);color:var(--teal-ink)}
-.link.dt{margin-left:60px;padding:2px 0 8px;font-size:14px}
 .badge{flex:none;min-width:34px;height:34px;border-radius:8px;background:var(--soft);display:grid;place-items:center;font-weight:800;font-size:15px}
 .ex-title{font-weight:700;font-size:17px}
 .ex-meta{color:var(--muted);font-size:14px}
@@ -147,6 +146,61 @@ details.s summary span{color:var(--muted);font-size:14px}
 textarea{width:100%;min-height:110px;border-radius:10px;border:2px solid var(--line);background:var(--paper);padding:10px;font-family:ui-monospace,Menlo,monospace;font-size:16px}
 .backup{margin-top:30px}
 .backup summary{cursor:pointer;font-weight:700;padding:8px 0}
+a.link{text-decoration:none}
+.link.dt{padding:2px 0 8px;font-size:14px}
+.dtrow{display:flex;gap:18px;margin-left:60px;flex-wrap:wrap}
+.sug{margin:0 14px 6px 60px;padding:8px 10px;border-left:4px solid var(--gold);background:var(--soft);border-radius:8px;font-size:14px}
+.sug .link{padding:0 0 0 8px;font-size:14px}
+.set.warm .lbl{color:var(--gold);font-weight:800}
+.exact{display:flex;gap:18px;padding:0 12px}
+.exact .link{font-size:14px;padding:4px 0 8px}
+input.note{display:block;width:calc(100% - 28px);margin:0 14px 14px;padding:10px 12px;border-radius:10px;border:2px solid transparent;background:var(--bg);font-size:16px}
+input.note:focus{outline:none;border-color:var(--teal)}
+.feel{display:flex;gap:8px;margin-bottom:12px}
+.fb{flex:1;height:52px;border-radius:12px;border:2px solid var(--line);background:none;font-size:20px;font-weight:800}
+.fb[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:var(--teal-ink)}
+textarea.snote{min-height:84px;font-family:inherit;font-size:16px}
+.rest{position:fixed;left:12px;right:12px;bottom:calc(92px + env(safe-area-inset-bottom));max-width:616px;margin:0 auto;z-index:6;background:var(--ink);color:var(--bg);border-radius:16px;padding:10px 12px 10px 16px;display:flex;align-items:center;gap:10px;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.rest[hidden]{display:none}
+.rest .rl{opacity:.8;font-weight:600}
+.rest .rt{font-size:28px;font-weight:800;flex:1;font-variant-numeric:tabular-nums}
+.rest button{background:rgba(127,127,127,.28);color:inherit;border:0;border-radius:10px;padding:10px 12px;font-weight:700;min-height:44px}
+.rest.fin{background:var(--teal);color:var(--teal-ink)}
+.rest.fin .rl{opacity:1;flex:1;font-weight:800}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(100px + env(safe-area-inset-bottom));background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;font-weight:600;z-index:8;max-width:90%;text-align:center}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+.card .t{font-weight:700}
+.card .v{color:var(--muted);font-size:14px}
+.menu{display:block;width:100%;text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:10px;font-weight:700;font-size:17px}
+.menu span{display:block;color:var(--muted);font-weight:400;font-size:14px;margin-top:2px}
+.cal{display:flex;gap:8px;margin:18px 0 8px}
+.cd{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;color:var(--muted);font-weight:700}
+.cd i{width:100%;max-width:40px;aspect-ratio:1;border-radius:50%;border:2.5px solid var(--line);display:grid;place-items:center;font-style:normal}
+.cd.today i{border-color:var(--ink)}
+.cd.on i{background:var(--teal);border-color:var(--teal);color:var(--teal-ink)}
+.prow{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:8px}
+.pn span{display:block;color:var(--muted);font-size:13px}
+.pb{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.mini{min-height:40px;padding:6px 12px;border-radius:10px;border:2px solid var(--line);background:none;font-weight:700;font-size:14px}
+.mini:disabled{opacity:.35}
+.mini.warn{color:var(--danger)}
+.frm label.l{display:block;font-weight:700;margin:14px 0 6px}
+.in{width:100%;padding:12px;border-radius:10px;border:2px solid var(--line);background:var(--paper);font-size:16px;font-family:inherit}
+textarea.in{min-height:90px}
+.row2{display:flex;gap:10px;align-items:center}
+.row2 .field{flex:1}
+.enote{color:var(--muted);font-size:14px;font-style:italic}
+.rep-s{padding:10px 0;border-top:1px solid var(--line)}
+.rep-s h3{font-size:16px}
+.rep-s .m{color:var(--muted);font-size:14px}
+.goalline{stroke:var(--gold);stroke-width:2;stroke-dasharray:6 5}
+@media print{
+  :root{--bg:#fff;--paper:#fff;--ink:#000;--muted:#444;--line:#bbb;--soft:#eee}
+  nav,.rest,.toast,.noprint{display:none!important}
+  body{background:#fff;color:#000}
+  .wrap{padding:0;max-width:none}
+  .rep-s{break-inside:avoid}
+}
 </style>
 </head>
 <body>
@@ -154,9 +208,10 @@ textarea{width:100%;min-height:110px;border-radius:10px;border:2px solid var(--l
   <nav id="nav" aria-label="Hovedmeny"></nav>
   <main id="app"></main>
 </div>
+<div id="rest" class="rest" hidden role="status" aria-live="polite"></div>
 
 <script>
-/* ---------- Data fra programmet ---------- */
+/* ---------- Basisdata ---------- */
 const EX = {
  1:{n:'Ryggliggende ettbens hælsenk',t:'core',s:3,r:12,d:'Ligg på ryggen med hendene på hoftene. Løft begge ben til 90° i hofter og knær. Senk én hæl mot gulvet og løft rolig opp igjen. Hold ryggen stabil, uten rotasjon i bekkenet.'},
  2:{n:'Firfotstående diagonalhev, uten støtte av tærne',t:'core',s:3,r:8,d:'Stå på alle fire med hodet i forlengelse av ryggen. Løft tærne og stram mage og korsrygg. Strekk én arm og motsatt ben til de er i forlengelse av kroppen. Bytt side.'},
@@ -194,19 +249,17 @@ const STRETCH = [
  {id:28,n:'Childs pose',dose:'Hold i gitt antall sekunder'},
  {id:29,n:'Tøyning hoftebøyer, knesittende',dose:'Hold i gitt antall sekunder'}
 ];
-const SORTED_IDS = Object.keys(EX).map(Number).sort((a,b)=>a-b);
+const EX_BASE = JSON.parse(JSON.stringify(EX));
+const DAYS_BASE = {1:{core:DAYS[1].core.slice(),main:DAYS[1].main.slice()},2:{core:DAYS[2].core.slice(),main:DAYS[2].main.slice()}};
+const allIds = () => Object.keys(EX).map(Number).sort((a,b)=>a-b);
+const SEC = {core:'Kjerne', main:'Styrke'};
 
 /* ---------- Lagring ---------- */
 const mem = {};
 const PREFIX = 'treningslogg:';
 async function load(key, def){
-  try{
-    if(window.storage){ const r = await window.storage.get(key); if(r && r.value) return JSON.parse(r.value); }
-  }catch(e){}
-  try{
-    const v = window.localStorage && window.localStorage.getItem(PREFIX+key);
-    if(v) return JSON.parse(v);
-  }catch(e){}
+  try{ if(window.storage){ const r = await window.storage.get(key); if(r && r.value) return JSON.parse(r.value); } }catch(e){}
+  try{ const v = window.localStorage && window.localStorage.getItem(PREFIX+key); if(v) return JSON.parse(v); }catch(e){}
   return key in mem ? mem[key] : def;
 }
 async function save(key, val){
@@ -224,62 +277,159 @@ async function wake(on){
 document.addEventListener('visibilitychange', () => { if(document.visibilityState==='visible' && view==='workout') wake(true); });
 
 /* ---------- Tilstand ---------- */
-let sessions = [];
-let draft = null;
-let view = 'home';
-let progEx = null, metric = null;
-let lastSaved = null;
-let offlineReady = false, hintDismissed = false;
+let sessions = [], body = [], draft = null, view = 'home';
+let program = {ex:{}, days:null, nextId:100};
+let settings = {rest:60, timer:true, sound:true, inc:2.5, goal:null, lastBackup:null, snooze:null};
+let progEx = null, metric = null, progMode = 'ex';
+let histMode = 'session', repRange = '4w', ed = null;
+let lastSaved = null, offlineReady = false, hintDismissed = false;
+let confirming = false, discArm = false, delArm = null, bodyDel = null, resetArm = false;
 const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform==='MacIntel' && navigator.maxTouchPoints>1);
 const isStandalone = !!(navigator.standalone || (window.matchMedia && matchMedia('(display-mode: standalone)').matches));
+
 const $ = s => document.querySelector(s);
 const num = v => { const n = parseFloat(String(v).replace(',','.')); return isNaN(n) ? null : n; };
 const fmt = n => (Math.round(n*10)/10).toString().replace('.',',');
+const esc = s => String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const dateLong = iso => new Date(iso).toLocaleDateString('nb-NO',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
 const dateShort = iso => new Date(iso).toLocaleDateString('nb-NO',{day:'numeric',month:'short'});
 const sortedSessions = () => [...sessions].sort((a,b)=>a.date.localeCompare(b.date));
+const work = sets => (sets||[]).filter(x => !x.w);
+const saveSettings = () => save('settings', settings);
+const CHECK = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+const CHECK_S = CHECK.replace('width="24" height="24"','width="16" height="16"');
+
+function applyProgram(){
+  Object.keys(EX).forEach(k => { if(!EX_BASE[k]) delete EX[k]; else EX[k] = JSON.parse(JSON.stringify(EX_BASE[k])); });
+  Object.entries(program.ex || {}).forEach(([id,o]) => { EX[id] = Object.assign({}, EX[id] || {}, o); });
+  [1,2].forEach(d => {
+    const src = (program.days && program.days[d]) || DAYS_BASE[d];
+    DAYS[d].core = src.core.filter(id => EX[id]); DAYS[d].main = src.main.filter(id => EX[id]);
+  });
+  program.nextId = Math.max(program.nextId || 100, Math.max(99, ...allIds()) + 1);
+}
+function saveProgram(){
+  program.days = {1:{core:DAYS[1].core.slice(), main:DAYS[1].main.slice()}, 2:{core:DAYS[2].core.slice(), main:DAYS[2].main.slice()}};
+  save('program', program);
+  if(draft){ reconcileDraft(); persistDraft(); }
+}
 
 function lastFor(id, before){
   const list = sortedSessions().filter(s => !before || s.date < before).reverse();
   for(const s of list){ if(s.data[id] && s.data[id].length) return {date:s.date, sets:s.data[id]}; }
   return null;
 }
-function nextDay(){
-  const s = sortedSessions();
-  if(!s.length) return 1;
-  return s[s.length-1].day === 1 ? 2 : 1;
+function suggestion(id, before){
+  const ex = EX[id]; if(!ex || ex.t!=='w') return null;
+  const hist = sortedSessions().filter(s => (!before || s.date < before) && s.data[id] && work(s.data[id]).length).slice(-2);
+  if(hist.length < 2) return null;
+  const tops = hist.map(s => {
+    const w = work(s.data[id]); if(w.some(x => x.kg==null)) return null;
+    return (w.length >= ex.s && w.every(x => x.reps >= ex.r)) ? Math.max(...w.map(x => x.kg)) : null;
+  });
+  if(tops.some(v => v==null) || tops[0]!==tops[1]) return null;
+  return tops[1] + settings.inc;
 }
-function weekCount(){
-  const now = new Date(); const d = new Date(now.getFullYear(),now.getMonth(),now.getDate());
-  const mon = new Date(d); mon.setDate(d.getDate() - ((d.getDay()+6)%7));
-  return sessions.filter(s => new Date(s.date) >= mon).length;
+function nextDay(){ const s = sortedSessions(); return !s.length ? 1 : (s[s.length-1].day === 1 ? 2 : 1); }
+function weekStart(d){ const x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); x.setDate(x.getDate() - ((x.getDay()+6)%7)); return x; }
+function weekCount(){ const k = weekStart(new Date()).getTime(); return sessions.filter(s => weekStart(new Date(s.date)).getTime()===k).length; }
+function streak(){
+  const c = {}; sessions.forEach(s => { const k = weekStart(new Date(s.date)).getTime(); c[k] = (c[k]||0)+1; });
+  const p = weekStart(new Date()); let n = 0;
+  if((c[p.getTime()]||0) >= 3) n++;
+  for(;;){ p.setDate(p.getDate()-7); if((c[p.getTime()]||0) >= 3) n++; else break; }
+  return n;
 }
+function needBackup(){
+  if(!sessions.length) return false;
+  const now = Date.now();
+  if(settings.snooze && now - settings.snooze < 2*864e5) return false;
+  if(!settings.lastBackup) return sessions.length >= 3;
+  const since = new Date(settings.lastBackup).getTime();
+  const n = sessions.filter(s => new Date(s.date).getTime() > since).length;
+  return n >= 10 || (n >= 1 && now - since >= 7*864e5);
+}
+
 function newDraft(day){
   const sets = {};
   [...DAYS[day].core, ...DAYS[day].main].forEach(id => {
     const ex = EX[id], last = lastFor(id), arr = [];
+    const wl = last ? work(last.sets) : [];
     for(let i=0;i<ex.s;i++){
       let kg = '';
-      if(ex.t === 'w' && last){
-        const p = last.sets[i] || last.sets[last.sets.length-1];
-        kg = p && p.kg != null ? fmt(p.kg) : '';
-      }
+      if(ex.t === 'w' && wl.length){ const p = wl[i] || wl[wl.length-1]; kg = p && p.kg != null ? fmt(p.kg) : ''; }
       arr.push({kg, reps:String(ex.r), done:false});
     }
     sets[id] = arr;
   });
-  return {day, started:new Date().toISOString(), sets, stretch:{}, open:{}, min:{}};
+  return {day, started:new Date().toISOString(), sets, stretch:{}, open:{}, min:{}, note:'', feel:null, exnotes:{}, extra:[]};
 }
 function reconcileDraft(){
   draft.open = draft.open || {}; draft.min = draft.min || {}; draft.stretch = draft.stretch || {};
+  draft.exnotes = draft.exnotes || {}; draft.note = draft.note || ''; if(draft.feel===undefined) draft.feel = null;
   const fresh = newDraft(draft.day), d = DAYS[draft.day], ids = new Set([...d.core, ...d.main]);
   Object.keys(fresh.sets).forEach(id => { if(!draft.sets[id]) draft.sets[id] = fresh.sets[id]; });
   Object.keys(draft.sets).forEach(id => { if(!ids.has(Number(id)) && !draft.sets[id].some(s => s.done)) delete draft.sets[id]; });
+  draft.extra = Object.keys(draft.sets).map(Number).filter(i => !ids.has(i));
+}
+const workSets = () => Object.values(draft.sets).flatMap(a => a.filter(s => !s.w));
+const countAll = () => workSets().length;
+const countDone = () => workSets().filter(s => s.done).length;
+
+/* ---------- Pausetimer ---------- */
+const rest = {end:0, mode:null, iv:null, doneAt:0};
+let actx = null;
+function unlockAudio(){
+  try{ const AC = window.AudioContext || window.webkitAudioContext; if(AC && !actx) actx = new AC(); if(actx && actx.state==='suspended') actx.resume(); }catch(e){}
+}
+function alarm(){
+  try{ if(navigator.vibrate) navigator.vibrate([200,100,200]); }catch(e){}
+  if(settings.sound && actx){
+    try{ [0,0.3,0.6].forEach(t => { const o = actx.createOscillator(), g = actx.createGain(); o.frequency.value = 880; g.gain.value = 0.25; o.connect(g); g.connect(actx.destination); o.start(actx.currentTime+t); o.stop(actx.currentTime+t+0.16); }); }catch(e){}
+  }
+}
+const fmtT = s => Math.floor(s/60) + ':' + String(s%60).padStart(2,'0');
+function startRest(sec){
+  if(!settings.timer || !sec || sec <= 0) return;
+  rest.end = Date.now() + sec*1000; rest.mode = null;
+  clearInterval(rest.iv); rest.iv = setInterval(tickRest, 250); tickRest();
+}
+function hideRest(){
+  clearInterval(rest.iv); rest.iv = null; rest.mode = null;
+  const el = $('#rest'); if(el){ el.hidden = true; el.innerHTML = ''; }
+}
+function tickRest(){
+  const el = $('#rest'); if(!el) return;
+  const left = Math.ceil((rest.end - Date.now())/1000);
+  if(left > 0){
+    if(rest.mode !== 'run'){
+      rest.mode = 'run'; el.className = 'rest'; el.hidden = false;
+      el.innerHTML = '<span class="rl">Pause</span><span class="rt" id="rt"></span><button data-act="restadd">+15 s</button><button data-act="restx">Hopp over</button>';
+    }
+    $('#rt').textContent = fmtT(left);
+  } else if(rest.mode !== 'done'){
+    rest.mode = 'done'; rest.doneAt = Date.now(); el.className = 'rest fin'; el.hidden = false;
+    el.innerHTML = '<span class="rl">Pausen er over. Klar for neste sett!</span><button data-act="restx">OK</button>';
+    alarm();
+  } else if(Date.now() - rest.doneAt > 6000) hideRest();
+}
+let toastT = null;
+function toast(msg){
+  let t = $('#toast'); if(!t){ t = document.createElement('div'); t.id = 'toast'; t.className = 'toast'; t.setAttribute('role','status'); document.body.appendChild(t); }
+  t.textContent = msg; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => { t.hidden = true; }, 3500);
 }
 
-/* ---------- Visning ---------- */
-const CHECK = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
-
+/* ---------- Visning: felles ---------- */
+function setsText(id, sets, sep){
+  sep = sep === undefined ? '<br>' : sep;
+  if(!EX[id]) return '';
+  if(EX[id].t !== 'w') return sets.map(x => x.reps).join(', ') + ' reps';
+  const groups = [];
+  sets.forEach(x => { const g = groups[groups.length-1]; if(g && g.kg===x.kg && g.w===!!x.w) g.reps.push(x.reps); else groups.push({kg:x.kg, w:!!x.w, reps:[x.reps]}); });
+  return groups.map(g => (g.w?'Oppvarming ':'') + (g.kg != null ? fmt(g.kg)+' kg' : 'uten vekt') + ' × ' + g.reps.join(', ') + ' reps').join(sep);
+}
+const nm = id => EX[id] ? esc(EX[id].n) : 'Øvelse ' + id;
+const TABS = [['home','Trening'],['progress','Fremgang'],['history','Historikk'],['more','Mer']];
 function renderNav(){
   const n = $('#nav');
   if(view==='workout'){
@@ -292,41 +442,43 @@ function renderNav(){
     return;
   }
   n.className = '';
-  const items = [['home','Trening'],['progress','Fremgang'],['history','Historikk']];
-  const cur = view==='done' ? 'home' : view;
-  n.innerHTML = items.map(([k,l]) =>
-    `<button data-act="nav" data-v="${k}" ${cur===k?'aria-current="page"':''}>${l}</button>`).join('');
+  const cur = view==='done' ? 'home' : ['program','exedit','report'].includes(view) ? 'more' : view;
+  n.innerHTML = TABS.map(([k,l]) => `<button data-act="nav" data-v="${k}" ${cur===k?'aria-current="page"':''}>${l}</button>`).join('');
 }
-
 function render(){
-  if(view!=='workout') confirming = false;
+  if(view!=='workout'){ confirming = false; hideRest(); }
   discArm = false;
   renderNav();
-  const app = $('#app');
-  if(view==='home') app.innerHTML = homeView();
-  else if(view==='workout') app.innerHTML = workoutView();
-  else if(view==='done') app.innerHTML = doneView();
-  else if(view==='progress') app.innerHTML = progressView();
-  else app.innerHTML = historyView();
+  const V = {home:homeView, workout:workoutView, done:doneView, progress:progressView, history:historyView, more:moreView, program:programView, exedit:editorView, report:reportView};
+  $('#app').innerHTML = (V[view] || homeView)();
   if(view==='workout') updateCounter();
 }
+function keepScroll(fn){ const y = window.scrollY; fn(); window.scrollTo(0,y); }
 
+/* ---------- Hjem ---------- */
 function homeView(){
-  const nd = nextDay(), od = nd===1?2:1, wc = weekCount();
+  const nd = nextDay(), od = nd===1?2:1, wc = weekCount(), st = streak();
   const last = sortedSessions().slice(-1)[0];
-  const dots = [0,1,2].map(i => `<div class="tally ${i<wc?'on':''}">${i<wc?CHECK.replace('width="24" height="24"','width="18" height="18"'):''}</div>`).join('');
+  const ws = weekStart(new Date()), today = new Date().toDateString();
+  const cal = ['M','T','O','T','F','L','S'].map((n,i) => {
+    const dd = new Date(ws); dd.setDate(ws.getDate()+i);
+    const has = sessions.some(s => new Date(s.date).toDateString()===dd.toDateString());
+    return `<div class="cd ${has?'on':''} ${dd.toDateString()===today?'today':''}"><span>${n}</span><i>${has?CHECK_S:''}</i></div>`;
+  }).join('');
   const resume = draft ? (draft.editId
     ? `<div class="banner"><p><b>Du redigerer ${DAYS[draft.day].title} fra ${dateShort(draft.date)}.</b> Den lagrede økten er uendret til du trykker «Lagre endringer».</p>
     <div class="row"><button class="btn small" data-act="resume">Fortsett redigering</button><button class="btn small alt" data-act="discard">Avbryt redigering</button></div></div>`
     : `<div class="banner"><p><b>${DAYS[draft.day].title} er påbegynt.</b> ${countDone()} av ${countAll()} sett er huket av.</p>
     <div class="row"><button class="btn small" data-act="resume">Fortsett økten</button><button class="btn small alt" data-act="discard">Forkast</button></div></div>`) : '';
   const hint = (isIos && !isStandalone && !hintDismissed) ? `<div class="banner"><p><b>Bruk den som en egen app, også uten nett.</b> Trykk på Del-ikonet i Safari og velg «Legg til på Hjem-skjerm». Åpne appen fra hjemskjermen etterpå, og start loggføringen der. Data i Safari og i hjemskjerm-appen lagres hver for seg.</p><button class="btn small alt" data-act="hint">Skjul</button></div>` : '';
+  const bk = needBackup() ? `<div class="banner"><p><b>Ta en kopi av historikken.</b> Det sikrer treningsdataene hvis iOS skulle rydde nettleserdata.</p><div class="row"><button class="btn small" data-act="exportfile">Lagre som fil</button><button class="btn small alt" data-act="snooze">Senere</button></div></div>` : '';
   const status = offlineReady ? '<p class="sec-sub" style="margin-top:18px">Klar for bruk uten nett. Alt lagres på denne enheten.</p>' : '';
-  return `${hint}${resume}
+  return `${hint}${bk}${resume}
   <section class="hero">
     <p class="lead">Neste økt</p>
     <h1>${DAYS[nd].title}</h1>
-    <div class="week" role="img" aria-label="${wc} av 3 økter denne uken">${dots}<span class="t">${wc} av 3 denne uken</span></div>
+    <div class="cal" role="img" aria-label="Uken: ${wc} økter">${cal}</div>
+    <p class="sec-sub" style="margin:0">${wc} av 3 økter denne uken${st ? ' · ' + st + (st===1?' uke':' uker') + ' på rad med 3 økter' : ''}</p>
   </section>
   <button class="btn" data-act="start" data-day="${nd}">Start ${DAYS[nd].title}</button>
   <button class="btn alt" data-act="start" data-day="${od}">Start ${DAYS[od].title} i stedet</button>
@@ -337,44 +489,50 @@ function homeView(){
   </div>${last && !draft ? `<button class="link" data-act="edit" data-id="${last.id}" style="margin-top:8px">Rediger siste økt (${dateShort(last.date)})</button>` : ''}${status}`;
 }
 
-function countAll(){ return Object.values(draft.sets).reduce((a,s)=>a+s.length,0); }
-function countDone(){ return Object.values(draft.sets).reduce((a,s)=>a+s.filter(x=>x.done).length,0); }
-function updateCounter(){ const el = $('#counter'); if(el) el.textContent = countDone()+' av '+countAll()+' sett'; const m = $('#msg'); if(m){ m.textContent=''; m.className=''; } }
-
+/* ---------- Økt ---------- */
+function updateCounter(){
+  const el = $('#counter'); if(el) el.textContent = countDone() + ' av ' + countAll() + ' sett';
+  const m = $('#msg'); if(m){ m.textContent = ''; m.className = ''; }
+}
 function exCard(id){
-  const ex = EX[id], sets = draft.sets[id], last = lastFor(id, draft.editId ? draft.date : undefined), open = draft.open[id];
-  let lastTxt = '';
-  if(last){
-    const txt = ex.t==='w'
-      ? last.sets.map(s => (s.kg!=null?fmt(s.kg):'?')+'×'+s.reps).join(', ')+' kg×reps'
-      : last.sets.map(s => s.reps).join(', ')+' reps';
-    lastTxt = `<div class="last">Sist (${dateShort(last.date)}): <b class="num">${txt}</b></div>`;
-  }
+  const ex = EX[id], sets = draft.sets[id]; if(!ex || !sets) return '';
+  const before = draft.editId ? draft.date : undefined;
+  const last = lastFor(id, before), open = draft.open[id], min = !!draft.min[id];
+  const wl = last ? work(last.sets) : [];
+  const lastTxt = (last && wl.length) ? `<div class="last">Sist (${dateShort(last.date)}): <b class="num">${setsText(id, wl, ' · ')}</b></div>` : '';
+  const sug = suggestion(id, before);
+  const sugTxt = sug ? `<div class="sug">Forslag: <b class="num">${fmt(sug)} kg</b> · alle sett fullført to økter på rad <button class="link" data-act="usesug" data-id="${id}" data-kg="${sug}">Bruk</button></div>` : '';
+  let wk = 0;
   const rows = sets.map((s,i) => {
-    const kg = ex.t==='w' ? `<label class="field"><input data-kg="${id}:${i}" inputmode="decimal" value="${s.kg}" aria-label="Vekt sett ${i+1}" placeholder="0"><small>kg</small></label>` : '';
-    return `<div class="set ${ex.t==='w'?'':'bw'} ${s.done?'done':''}" data-row="${id}:${i}">
-      <span class="lbl" aria-label="Sett ${i+1}">${i+1}</span>${kg}
-      <label class="field"><input data-reps="${id}:${i}" inputmode="numeric" value="${s.reps}" aria-label="Repetisjoner sett ${i+1}" placeholder="0"><small>reps</small></label>
-      <button class="chk" data-act="toggle" data-k="${id}:${i}" aria-pressed="${s.done}" aria-label="Sett ${i+1} ferdig">${CHECK}</button></div>`;
+    const label = s.w ? 'V' : String(++wk), aria = s.w ? 'Oppvarming' : 'Sett ' + wk;
+    const kg = ex.t==='w' ? `<label class="field"><input data-kg="${id}:${i}" inputmode="decimal" value="${esc(s.kg)}" aria-label="Vekt ${aria}" placeholder="0"><small>kg</small></label>` : '';
+    return `<div class="set ${ex.t==='w'?'':'bw'} ${s.done?'done':''} ${s.w?'warm':''}">
+      <span class="lbl" aria-label="${aria}">${label}</span>${kg}
+      <label class="field"><input data-reps="${id}:${i}" inputmode="numeric" value="${esc(s.reps)}" aria-label="Repetisjoner ${aria}" placeholder="0"><small>reps</small></label>
+      <button class="chk" data-act="toggle" data-k="${id}:${i}" aria-pressed="${s.done}" aria-label="${aria} ferdig">${CHECK}</button></div>`;
   }).join('');
+  const hasWarm = sets.some(s => s.w);
+  const acts = ex.t==='w' ? `<div class="exact"><button class="link" data-act="warm" data-id="${id}">+ Oppvarmingssett</button>${hasWarm?`<button class="link" data-act="rmwarm" data-id="${id}">− Fjern</button>`:''}</div>` : '';
+  const vid = ex.v && /^https?:\/\//i.test(ex.v) ? `<a class="link dt" href="${esc(ex.v)}" target="_blank" rel="noopener">Se video</a>` : '';
   const tag = ex.t==='bw' ? ' · kroppsvekt' : '';
-  const min = !!draft.min[id], allDone = sets.every(s => s.done);
+  const allDone = work(sets).every(s => s.done);
   return `<article class="ex ${min?'min':''}">
-    <button class="ex-head" data-act="min" data-id="${id}" aria-expanded="${!min}" aria-label="${id}. ${ex.n}, ${min?'vis':'skjul'} øvelsen">
+    <button class="ex-head" data-act="min" data-id="${id}" aria-expanded="${!min}" aria-label="${id}. ${esc(ex.n)}, ${min?'vis':'skjul'} øvelsen">
       <span class="badge num ${allDone?'ok':''}">${id}</span>
-      <span class="ex-text"><span class="ex-title">${ex.n}</span>${min?'':`<br><span class="ex-meta">${ex.s} × ${ex.r}${tag}</span>`}</span>
+      <span class="ex-text"><span class="ex-title">${esc(ex.n)}</span>${min?'':`<br><span class="ex-meta">${ex.s} × ${ex.r}${tag}</span>`}</span>
       <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
     </button>
-    ${min?'':`<button class="link dt" data-act="desc" data-id="${id}" aria-expanded="${!!open}">${open?'Skjul beskrivelse':'Vis beskrivelse'}</button>
-    ${open?`<p class="desc">${ex.d}</p>`:''}${lastTxt}
-    <div class="sets">${rows}</div>`}</article>`;
+    ${min?'':`<div class="dtrow">${ex.d?`<button class="link dt" data-act="desc" data-id="${id}" aria-expanded="${!!open}">${open?'Skjul beskrivelse':'Vis beskrivelse'}</button>`:''}${vid}</div>
+    ${open && ex.d?`<p class="desc">${esc(ex.d)}</p>`:''}${lastTxt}${sugTxt}
+    <div class="sets">${rows}</div>${acts}
+    <input class="note" data-exnote="${id}" value="${esc(draft.exnotes[id]||'')}" placeholder="Notat til øvelsen (valgfritt)" aria-label="Notat til ${esc(ex.n)}">`}</article>`;
 }
-
 function workoutView(){
   const d = DAYS[draft.day];
   const stretch = STRETCH.map(s => `<div class="stretch">
     <button class="chk" data-act="stretch" data-id="${s.id}" aria-pressed="${!!draft.stretch[s.id]}" aria-label="${s.n} ferdig">${CHECK}</button>
     <div class="meta"><b>${s.n}</b><span>${s.dose}</span></div></div>`).join('');
+  const feel = [1,2,3,4,5].map(n => `<button class="fb" data-act="feel" data-v="${n}" aria-pressed="${draft.feel===n}">${n}</button>`).join('');
   return `<div class="top"><button class="link" data-act="leave">‹ Tilbake</button></div>
   <h1 style="font-size:32px;font-weight:800">${d.title}</h1>
   ${draft.editId ? `<div class="banner" style="margin-top:12px"><p style="margin:0"><b>Du redigerer økten fra ${dateLong(draft.date)}.</b> Endringene erstatter den lagrede økten, det opprettes ingen ny.</p></div>` : ''}
@@ -383,76 +541,75 @@ function workoutView(){
   ${d.core.map(exCard).join('')}
   <h2 class="sec">${d.prog}</h2><p class="sec-sub">Vekten fra forrige økt er fylt inn. Endre den ved behov, og huk av når settet er gjort.</p>
   ${d.main.map(exCard).join('')}
-  ${(draft.extra && draft.extra.length) ? `<h2 class="sec">Fra tidligere oppsett</h2><p class="sec-sub">Disse øvelsene var med i den lagrede økten.</p>${draft.extra.map(exCard).join('')}` : ''}
+  ${draft.extra && draft.extra.length ? `<h2 class="sec">Fra tidligere oppsett</h2><p class="sec-sub">Disse øvelsene er ikke lenger i programmet, men har data i denne økten.</p>${draft.extra.map(exCard).join('')}` : ''}
   <h2 class="sec">Tøyning</h2><p class="sec-sub">Etter behov.</p>${stretch}
-  `;
+  <h2 class="sec">Etter økten</h2><p class="sec-sub">Hvordan føltes økten? 1 = tung eller vond, 5 = veldig bra.</p>
+  <div class="feel">${feel}</div>
+  <textarea class="in snote" data-note="1" placeholder="Notat til økten (valgfritt), for eksempel smerter eller form" aria-label="Notat til økten">${esc(draft.note||'')}</textarea>`;
 }
-
 function doneView(){
   const prs = lastSaved.prs;
   const list = prs.length
-    ? prs.map(p => `<div class="pr"><i></i><div><b class="num">${fmt(p.kg)} kg</b> · ${EX[p.id].n}<br><span style="color:var(--muted);font-size:14px">Forrige rekord: ${fmt(p.prev)} kg</span></div></div>`).join('')
+    ? prs.map(p => `<div class="pr"><i></i><div><b class="num">${fmt(p.kg)} kg</b> · ${nm(p.id)}<br><span style="color:var(--muted);font-size:14px">Forrige rekord: ${fmt(p.prev)} kg</span></div></div>`).join('')
     : '<p style="color:var(--muted)">Ingen nye vektrekorder denne gangen. Jevn og god innsats teller også.</p>';
   return `<section class="hero"><p class="lead">${lastSaved.edited ? 'Endringene er lagret' : 'Økten er lagret'}</p><h1>${DAYS[lastSaved.day].title} ferdig</h1></section>
   <h2 class="sec" style="margin-top:0">${prs.length?'Nye rekorder':'Rekorder'}</h2><div style="margin-top:10px">${list}</div>
   <div style="margin-top:24px"><button class="btn" data-act="nav" data-v="progress">Se fremgang</button><button class="btn alt" data-act="edit" data-id="${lastSaved.id}">Rediger økten</button><button class="btn alt" data-act="nav" data-v="home">Til forsiden</button></div>`;
 }
 
-function metricsFor(id){
-  return EX[id].t==='w' ? [['max','Tyngste vekt'],['vol','Volum']] : [['reps','Totalt reps']];
-}
+/* ---------- Fremgang ---------- */
 function pointsFor(id, m){
   const pts = [];
   sortedSessions().forEach(s => {
-    const sets = s.data[id]; if(!sets || !sets.length) return;
+    const sets = work(s.data[id]); if(!sets.length) return;
     let v;
     if(m==='max'){ const k = sets.map(x=>x.kg).filter(x=>x!=null); if(!k.length) return; v = Math.max(...k); }
     else if(m==='vol'){ v = sets.reduce((a,x)=>a+(x.kg||0)*(x.reps||0),0); if(!v) return; }
     else v = sets.reduce((a,x)=>a+(x.reps||0),0);
-    pts.push({date:s.date, v, sets});
+    pts.push({date:s.date, v, sets:s.data[id]});
   });
   return pts;
 }
-function chartSvg(pts, unit){
-  const W=Math.max(300,Math.min(640,(window.innerWidth||360)-32)),H=240,L=40,R=14,T=16,B=32;
-  const vs = pts.map(p=>p.v); let lo = Math.min(...vs), hi = Math.max(...vs);
-  if(hi===lo){ lo = lo*0.8; hi = hi*1.2 || 1; } else { const pad=(hi-lo)*0.25; lo = Math.max(0,lo-pad); hi = hi+pad; }
+function chartSvg(pts, unit, goal){
+  const W = Math.max(300, Math.min(640, (window.innerWidth||360)-32)), H = 240, L = 40, R = 14, T = 16, B = 32;
+  const vs = pts.map(p=>p.v); if(goal!=null) vs.push(goal);
+  let lo = Math.min(...vs), hi = Math.max(...vs);
+  if(hi===lo){ lo = lo*0.8; hi = hi*1.2 || 1; } else { const pad = (hi-lo)*0.25; lo = Math.max(0,lo-pad); hi = hi+pad; }
   const x = i => L + (pts.length===1 ? (W-L-R)/2 : i*(W-L-R)/(pts.length-1));
   const y = v => T + (1-(v-lo)/(hi-lo))*(H-T-B);
   let g = '';
-  for(let k=0;k<4;k++){
-    const v = lo+(hi-lo)*k/3;
-    g += `<line class="grid" x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}"/><text class="ax" x="${L-8}" y="${y(v)+4}" text-anchor="end">${fmt(v)}</text>`;
-  }
-  const best = vs.indexOf(Math.max(...vs));
+  for(let k=0;k<4;k++){ const v = lo+(hi-lo)*k/3; g += `<line class="grid" x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}"/><text class="ax" x="${L-8}" y="${y(v)+4}" text-anchor="end">${fmt(v)}</text>`; }
+  const best = pts.map(p=>p.v).indexOf(Math.max(...pts.map(p=>p.v)));
   const line = pts.length>1 ? `<polyline class="ln" points="${pts.map((p,i)=>x(i)+','+y(p.v)).join(' ')}"/>` : '';
   const dots = pts.map((p,i)=>`<circle class="dot ${i===best?'best':''}" cx="${x(i)}" cy="${y(p.v)}" r="${i===best?7:5}"/>`).join('');
+  const gl = goal!=null ? `<line class="goalline" x1="${L}" x2="${W-R}" y1="${y(goal)}" y2="${y(goal)}"/><text class="ax" x="${W-R}" y="${y(goal)-6}" text-anchor="end">Mål ${fmt(goal)}</text>` : '';
   const step = Math.max(1, Math.ceil(pts.length/5));
-  let lbl = '';
-  pts.forEach((p,i)=>{ if(i%step===0 || i===pts.length-1) lbl += `<text class="ax" x="${x(i)}" y="${H-10}" text-anchor="middle">${dateShort(p.date)}</text>`; });
-  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Utvikling over tid, ${unit}">${g}${line}${dots}${lbl}</svg>`;
+  let lbl = ''; pts.forEach((p,i) => { if(i%step===0 || i===pts.length-1) lbl += `<text class="ax" x="${x(i)}" y="${H-10}" text-anchor="middle">${dateShort(p.date)}</text>`; });
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Utvikling over tid, ${unit}">${g}${gl}${line}${dots}${lbl}</svg>`;
 }
 function progressView(){
-  const withData = SORTED_IDS.filter(id => lastFor(id));
-  if(!progEx || !EX[progEx]) progEx = withData[0] || 8;
-  const ms = metricsFor(progEx);
+  const seg = `<div class="seg" style="margin-top:0">${[['ex','Øvelse'],['rec','Rekorder'],['body','Kroppsvekt']].map(([k,l]) => `<button data-act="pmode" data-m="${k}" aria-pressed="${progMode===k}">${l}</button>`).join('')}</div>`;
+  const inner = progMode==='rec' ? recordsView() : progMode==='body' ? bodyView() : exProgressView();
+  return `<h1 style="font-size:32px;font-weight:800;margin-bottom:14px">Fremgang</h1>${seg}${inner}`;
+}
+function exProgressView(){
+  const withData = allIds().filter(id => lastFor(id));
+  if(!progEx || !EX[progEx]) progEx = withData[0] || DAYS[1].main[0];
+  const ms = EX[progEx].t==='w' ? [['max','Tyngste vekt'],['vol','Volum']] : [['reps','Totalt reps']];
   if(!metric || !ms.find(m=>m[0]===metric)) metric = ms[0][0];
-  const opt = d => d.core.concat(d.main).map(id => `<option value="${id}" ${id===progEx?'selected':''}>${id}. ${EX[id].n}${lastFor(id)?'':' (ingen data)'}</option>`).join('');
+  const o = id => `<option value="${id}" ${id===progEx?'selected':''}>${id}. ${nm(id)}${lastFor(id)?'':' (ingen data)'}</option>`;
   const inDays = new Set([...DAYS[1].core, ...DAYS[1].main, ...DAYS[2].core, ...DAYS[2].main]);
-  const others = SORTED_IDS.filter(id => !inDays.has(id) && lastFor(id));
-  const otherGrp = others.length ? `<optgroup label="Andre">${others.map(id => `<option value="${id}" ${id===progEx?'selected':''}>${id}. ${EX[id].n}</option>`).join('')}</optgroup>` : '';
-  const sel = `<select id="exsel" aria-label="Velg øvelse"><optgroup label="Dag 1">${opt(DAYS[1])}</optgroup><optgroup label="Dag 2">${opt(DAYS[2])}</optgroup>${otherGrp}</select>`;
+  const others = allIds().filter(id => !inDays.has(id) && lastFor(id));
+  const sel = `<select id="exsel" aria-label="Velg øvelse"><optgroup label="Dag 1">${DAYS[1].core.concat(DAYS[1].main).map(o).join('')}</optgroup><optgroup label="Dag 2">${DAYS[2].core.concat(DAYS[2].main).map(o).join('')}</optgroup>${others.length?`<optgroup label="Andre">${others.map(o).join('')}</optgroup>`:''}</select>`;
   const seg = ms.length>1 ? `<div class="seg">${ms.map(([k,l])=>`<button data-act="metric" data-m="${k}" aria-pressed="${k===metric}">${l}</button>`).join('')}</div>` : '<div style="height:12px"></div>';
-  const unit = metric==='reps' ? 'reps' : metric==='vol' ? 'kg' : 'kg';
+  const unit = metric==='reps' ? 'reps' : 'kg';
   const pts = pointsFor(progEx, metric);
-  let body;
-  if(!pts.length){
-    body = `<div class="empty">Ingen data for denne øvelsen ennå. Fullfør en økt som inneholder den, så dukker utviklingen opp her.</div>`;
-  } else {
-    const first = pts[0].v, now = pts[pts.length-1].v, diff = now-first;
-    const pct = first ? Math.round(diff/first*100) : 0;
+  let bodyHtml;
+  if(!pts.length) bodyHtml = `<div class="empty">Ingen data for denne øvelsen ennå. Fullfør en økt som inneholder den, så dukker utviklingen opp her.</div>`;
+  else {
+    const first = pts[0].v, now = pts[pts.length-1].v, diff = now-first, pct = first ? Math.round(diff/first*100) : 0;
     const diffTxt = pts.length<2 ? '–' : (diff>0?'+':'')+fmt(diff)+' '+unit;
-    body = `<div class="chartbox">${chartSvg(pts, unit)}</div>
+    bodyHtml = `<div class="chartbox">${chartSvg(pts, unit)}</div>
     <div class="delta">
       <div><b class="num">${fmt(now)}</b><span>siste (${unit})</span></div>
       <div><b class="num ${diff>0?'up':''}">${diffTxt}</b><span>${pts.length<2?'trenger to økter':'siden start'+(pct?` (${pct>0?'+':''}${pct} %)`:'')}</span></div>
@@ -460,65 +617,239 @@ function progressView(){
     </div>
     <table><thead><tr><th>Dato</th><th>Sett</th></tr></thead><tbody>${[...pts].reverse().map(p=>`<tr><td>${dateShort(p.date)}</td><td class="num">${setsText(progEx, p.sets)}</td></tr>`).join('')}</tbody></table>`;
   }
-  return `<h1 style="font-size:32px;font-weight:800;margin-bottom:14px">Fremgang</h1>${sel}${seg}${body}`;
+  return `${sel}${seg}${bodyHtml}`;
+}
+function recordsView(){
+  const rows = allIds().filter(id => lastFor(id)).map(id => {
+    const ex = EX[id]; let best = null, e1 = 0, rb = 0, rbDate = null;
+    sortedSessions().forEach(s => {
+      const w = work(s.data[id]); if(!w.length) return;
+      if(ex.t==='w') w.forEach(x => {
+        if(x.kg==null) return;
+        if(!best || x.kg>best.kg || (x.kg===best.kg && x.reps>best.reps)) best = {kg:x.kg, reps:x.reps, date:s.date};
+        e1 = Math.max(e1, x.kg*(1+(x.reps||0)/30));
+      });
+      else { const t = w.reduce((a,x)=>a+(x.reps||0),0); if(t>rb){ rb = t; rbDate = s.date; } }
+    });
+    if(ex.t==='w'){
+      if(!best) return '';
+      return `<div class="card"><div class="t">${id}. ${nm(id)}</div><div class="v">Best: <b class="num">${fmt(best.kg)} kg × ${best.reps}</b> (${dateShort(best.date)}) · Estimert 1RM ca. <b class="num">${Math.round(e1)} kg</b></div></div>`;
+    }
+    return `<div class="card"><div class="t">${id}. ${nm(id)}</div><div class="v">Flest reps i en økt: <b class="num">${rb}</b> (${dateShort(rbDate)})</div></div>`;
+  }).join('');
+  return `<p class="sec-sub" style="margin:14px 0">Estimert 1RM er et regnestykke (Epley) for hvor mye du teoretisk klarer på ett repetisjon.</p>` + (rows || `<div class="empty">Ingen rekorder ennå. Fullfør en økt, så dukker de opp her.</div>`);
+}
+function bodyView(){
+  const pts = [...body].sort((a,b)=>a.date.localeCompare(b.date)).map(b => ({date:b.date, v:b.kg}));
+  const t = new Date(), iso = t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0');
+  const form = `<div class="card" style="margin-top:14px"><div class="row2"><label class="field"><input id="b-kg" inputmode="decimal" placeholder="0" aria-label="Kroppsvekt i kg"><small>kg</small></label><input type="date" id="b-date" class="in" value="${iso}" aria-label="Dato" style="flex:1"></div>
+    <button class="btn small" data-act="badd" style="margin-top:10px">Legg til</button><p class="msg" id="bmsg" style="min-height:0;margin:6px 0 0"></p>
+    <div class="row2" style="margin-top:12px"><label class="field"><small>Mål</small><input id="b-goal" inputmode="decimal" value="${settings.goal!=null?fmt(settings.goal):''}" placeholder="valgfritt" aria-label="Målvekt i kg"><small>kg</small></label><button class="btn small alt" data-act="bgoal">Lagre mål</button></div></div>`;
+  let chart = '<div class="empty">Ingen registreringer ennå.</div>';
+  if(pts.length){
+    const first = pts[0].v, now = pts[pts.length-1].v, diff = now-first;
+    chart = `<div class="chartbox">${chartSvg(pts,'kg',settings.goal)}</div>
+    <div class="delta"><div><b class="num">${fmt(now)}</b><span>siste (kg)</span></div><div><b class="num">${pts.length<2?'–':(diff>0?'+':'')+fmt(diff)}</b><span>siden start (kg)</span></div>${settings.goal!=null?`<div><b class="num">${fmt(Math.abs(settings.goal-now))}</b><span>${now===settings.goal?'mål nådd':(settings.goal<now?'ned til mål':'opp til mål')} (kg)</span></div>`:''}</div>
+    <table><thead><tr><th>Dato</th><th>Vekt</th><th></th></tr></thead><tbody>${[...body].sort((a,b)=>b.date.localeCompare(a.date)).map(b=>`<tr><td>${dateLong(b.date)}</td><td class="num">${fmt(b.kg)} kg</td><td><button class="link" data-act="bdel" data-id="${b.id}" style="color:var(--danger)">${bodyDel===b.id?'Sikker?':'Slett'}</button></td></tr>`).join('')}</tbody></table>`;
+  }
+  return form + chart;
 }
 
-function setsText(id, sets){
-  if(EX[id].t !== 'w') return sets.map(x => x.reps).join(', ') + ' reps';
-  const groups = [];
-  sets.forEach(x => { const g = groups[groups.length-1]; if(g && g.kg === x.kg) g.reps.push(x.reps); else groups.push({kg:x.kg, reps:[x.reps]}); });
-  return groups.map(g => (g.kg != null ? fmt(g.kg)+' kg' : 'uten vekt') + ' × ' + g.reps.join(', ') + ' reps').join('<br>');
-}
+/* ---------- Historikk ---------- */
 function exerciseHistory(){
-  const rows = SORTED_IDS.filter(id => lastFor(id)).map(id => {
+  const rows = allIds().filter(id => lastFor(id)).map(id => {
     const ex = EX[id];
-    const pts = sortedSessions().filter(s => s.data[id] && s.data[id].length).map(s => ({date:s.date, sets:s.data[id]}));
+    const pts = sortedSessions().filter(s => s.data[id] && s.data[id].length).map(s => ({date:s.date, sets:s.data[id], note:(s.exnotes||{})[id]}));
     const lastP = pts[pts.length-1], n = pts.length + (pts.length===1 ? ' økt' : ' økter');
     let sub;
-    if(ex.t === 'w'){
-      const all = pts.flatMap(p => p.sets.map(x => x.kg).filter(k => k != null));
-      const lk = lastP.sets.map(x => x.kg).filter(k => k != null);
+    if(ex.t==='w'){
+      const all = pts.flatMap(p => work(p.sets).map(x => x.kg).filter(k => k != null));
+      const lk = work(lastP.sets).map(x => x.kg).filter(k => k != null);
       sub = 'Sist ' + (lk.length ? fmt(Math.max(...lk))+' kg' : '–') + (all.length ? ' · Best '+fmt(Math.max(...all))+' kg' : '') + ' · ' + n;
-    } else sub = 'Sist ' + lastP.sets.reduce((a,x) => a+(x.reps||0), 0) + ' reps · ' + n;
-    const body = [...pts].reverse().map(p => `<div class="s-ex"><b>${dateLong(p.date)}</b><div class="num">${setsText(id, p.sets)}</div></div>`).join('');
-    return `<details class="s"><summary><div><b>${id}. ${ex.n}</b><span>${sub}</span></div><span aria-hidden="true">›</span></summary><div class="s-body">${body}</div></details>`;
+    } else sub = 'Sist ' + work(lastP.sets).reduce((a,x) => a+(x.reps||0), 0) + ' reps · ' + n;
+    const body = [...pts].reverse().map(p => `<div class="s-ex"><b>${dateLong(p.date)}</b><div class="num">${setsText(id, p.sets)}</div>${p.note?`<div class="enote">Notat: ${esc(p.note)}</div>`:''}</div>`).join('');
+    return `<details class="s"><summary><div><b>${id}. ${nm(id)}</b><span>${sub}</span></div><span aria-hidden="true">›</span></summary><div class="s-body">${body}</div></details>`;
   });
   return rows.length ? rows.join('') : `<div class="empty">Ingen økter er logget ennå. Start en økt fra Trening-fanen.</div>`;
 }
-let histMode = 'session';
-let confirming = false, discArm = false;
-let delArm = null;
 function historyView(){
   const list = [...sortedSessions()].reverse();
   const items = list.length ? list.map(s => {
     const ids = Object.keys(s.data).map(Number).sort((a,b)=>a-b);
-    const nSets = ids.reduce((a,id)=>a+s.data[id].length,0);
-    const body = ids.map(id => {
-      const ex = EX[id]; if(!ex) return '';
-      const t = setsText(id, s.data[id]);
-      return `<div class="s-ex"><b>${id}. ${ex.n}</b><div class="num">${t}</div></div>`;
+    const nSets = ids.reduce((a,id)=>a+work(s.data[id]).length,0);
+    const bodyH = ids.map(id => {
+      if(!EX[id]) return '';
+      const nt = (s.exnotes||{})[id];
+      return `<div class="s-ex"><b>${id}. ${nm(id)}</b><div class="num">${setsText(id, s.data[id])}</div>${nt?`<div class="enote">Notat: ${esc(nt)}</div>`:''}</div>`;
     }).join('');
     const st = (s.stretch||[]).length ? `<div class="s-ex"><b>Tøyning</b><div>${s.stretch.map(id=>(STRETCH.find(x=>x.id===id)||{}).n).filter(Boolean).join(', ')}</div></div>` : '';
+    const sn = s.note ? `<div class="s-ex"><b>Notat til økten</b><div>${esc(s.note)}</div></div>` : '';
     const armed = delArm===s.id;
-    return `<details class="s"><summary><div><b>${dateLong(s.date)}</b><span>${DAYS[s.day].title}, ${nSets} sett</span></div><span aria-hidden="true">›</span></summary>
-      <div class="s-body">${body}${st}<button class="btn small alt" data-act="edit" data-id="${s.id}" style="margin:10px 8px 0 0">Rediger økt</button><button class="del" data-act="del" data-id="${s.id}">${armed?'Trykk igjen for å slette':'Slett økt'}</button></div></details>`;
+    return `<details class="s"><summary><div><b>${dateLong(s.date)}</b><span>${DAYS[s.day].title}, ${nSets} sett${s.feel?` · føltes ${s.feel}/5`:''}</span></div><span aria-hidden="true">›</span></summary>
+      <div class="s-body">${bodyH}${st}${sn}<button class="btn small alt" data-act="edit" data-id="${s.id}" style="margin:10px 8px 0 0">Rediger økt</button><button class="del" data-act="del" data-id="${s.id}">${armed?'Trykk igjen for å slette':'Slett økt'}</button></div></details>`;
   }).join('') : `<div class="empty">Ingen økter er logget ennå. Start en økt fra Trening-fanen.</div>`;
   return `<h1 style="font-size:32px;font-weight:800;margin-bottom:14px">Historikk</h1>
   <p class="msg" id="hmsg" role="alert" style="min-height:0;margin:0 0 8px"></p>
   <div class="seg" style="margin-top:0"><button data-act="hmode" data-m="session" aria-pressed="${histMode==='session'}">Per økt</button><button data-act="hmode" data-m="exercise" aria-pressed="${histMode==='exercise'}">Per øvelse</button></div>
-  ${histMode==='exercise' ? exerciseHistory() : items}
-  <details class="backup"><summary>Sikkerhetskopi</summary>
-    <p class="sec-sub">Eksporter all historikk som tekst, eller lim inn en tidligere kopi for å gjenopprette. Import erstatter eksisterende data.</p>
-    <textarea id="bk" aria-label="Sikkerhetskopi som JSON"></textarea>
-    <div class="row" style="margin-top:10px"><button class="btn small" data-act="exportfile">Lagre som fil</button><button class="btn small alt" data-act="export">Vis som tekst</button></div>
-    <div class="row" style="margin-top:10px"><label class="btn small alt" style="margin:0">Velg fil<input type="file" id="bkfile" accept="application/json,.json" style="display:none"></label><button class="btn small" data-act="import">Importer</button></div>
-    <p class="msg" id="bkmsg" style="color:var(--muted)"></p></details>`;
+  ${histMode==='exercise' ? exerciseHistory() : items}`;
 }
 
-/* ---------- Handlinger ---------- */
+/* ---------- Mer, program, rapport ---------- */
+function moreView(){
+  const seg = (items, cur, act) => `<div class="seg">${items.map(([v,l]) => `<button data-act="${act}" data-v="${v}" aria-pressed="${String(cur)===String(v)}">${l}</button>`).join('')}</div>`;
+  const restCur = settings.timer ? settings.rest : 0;
+  const lb = settings.lastBackup ? dateLong(settings.lastBackup) : 'aldri';
+  return `<h1 style="font-size:32px;font-weight:800;margin-bottom:14px">Mer</h1>
+  <button class="menu" data-act="nav" data-v="program">Rediger program<span>Bytt øvelser mellom dagene, endre sett og reps, legg til egne øvelser og videolenker.</span></button>
+  <button class="menu" data-act="nav" data-v="report">Rapport og eksport<span>Oppsummering til fysioterapeuten som PDF eller CSV.</span></button>
+  <h2 class="sec">Pausetimer</h2><p class="sec-sub">Starter når du huker av et sett. Hviletiden kan overstyres per øvelse under Rediger program.</p>
+  ${seg([[0,'Av'],[30,'30 s'],[45,'45 s'],[60,'60 s'],[90,'90 s'],[120,'2 min'],[180,'3 min']], restCur, 'setrest')}
+  <p class="sec-sub" style="margin-top:12px">Lyd når pausen er over</p>
+  ${seg([[1,'På'],[0,'Av']], settings.sound?1:0, 'setsound')}
+  <p class="sec-sub" style="margin-top:12px">iPhone støtter ikke vibrasjon i nettapper, og timeren varsler bare mens appen er åpen på skjermen.</p>
+  <h2 class="sec">Vektforslag</h2><p class="sec-sub">Når du har fullført alle sett og reps to økter på rad med samme vekt, foreslår appen å øke med:</p>
+  ${seg([[1,'1 kg'],[2,'2 kg'],[2.5,'2,5 kg'],[5,'5 kg']], settings.inc, 'setinc')}
+  <h2 class="sec">Sikkerhetskopi</h2>
+  <p class="sec-sub">Siste kopi: ${lb}. Kopien inneholder økter, kroppsvekt, program og innstillinger. Import erstatter eksisterende data.</p>
+  <textarea id="bk" aria-label="Sikkerhetskopi som JSON" style="display:none"></textarea>
+  <div class="row"><button class="btn small" data-act="exportfile">Lagre som fil</button><button class="btn small alt" data-act="export">Vis som tekst</button></div>
+  <div class="row" style="margin-top:10px"><label class="btn small alt" style="margin:0">Velg fil<input type="file" id="bkfile" accept="application/json,.json" style="display:none"></label><button class="btn small" data-act="import">Importer</button></div>
+  <p class="msg" id="bkmsg" style="color:var(--muted)"></p>`;
+}
+function programView(){
+  const other = d => d===1 ? 2 : 1;
+  const list = (day, sec) => {
+    const arr = DAYS[day][sec];
+    if(!arr.length) return '<p class="sec-sub">Ingen øvelser her.</p>';
+    return arr.map((id,i) => `<div class="prow"><div class="pn"><b class="num">${id}</b> ${nm(id)}<span>${EX[id].s} × ${EX[id].r}${EX[id].t==='w'?'':' · kroppsvekt'}${EX[id].rest!=null?' · pause '+EX[id].rest+' s':''}</span></div>
+      <div class="pb"><button class="mini" data-act="pmove" data-day="${day}" data-sec="${sec}" data-id="${id}" data-dir="-1" ${i===0?'disabled':''} aria-label="Flytt opp">↑</button><button class="mini" data-act="pmove" data-day="${day}" data-sec="${sec}" data-id="${id}" data-dir="1" ${i===arr.length-1?'disabled':''} aria-label="Flytt ned">↓</button><button class="mini" data-act="pday" data-day="${day}" data-sec="${sec}" data-id="${id}">Til Dag ${other(day)}</button><button class="mini" data-act="pedit" data-id="${id}">Rediger</button><button class="mini warn" data-act="prm" data-day="${day}" data-sec="${sec}" data-id="${id}">Fjern</button></div></div>`).join('');
+  };
+  const used = new Set([...DAYS[1].core, ...DAYS[1].main, ...DAYS[2].core, ...DAYS[2].main]);
+  const free = allIds().filter(id => !used.has(id));
+  const addRow = day => free.length ? `<div class="card"><label class="l" for="padd-${day}" style="font-weight:700;display:block;margin-bottom:6px">Legg til øvelse i Dag ${day}</label><select id="padd-${day}">${free.map(id=>`<option value="${id}">${id}. ${nm(id)}</option>`).join('')}</select><div class="row" style="margin-top:10px"><button class="btn small alt" data-act="padd" data-day="${day}" data-sec="core">Som kjerne</button><button class="btn small alt" data-act="padd" data-day="${day}" data-sec="main">Som styrke</button></div></div>` : '';
+  const day = d => `<h2 class="sec">Dag ${d}</h2><h3 style="margin:10px 0 8px;font-size:15px;color:var(--muted)">Kjerne</h3>${list(d,'core')}<h3 style="margin:14px 0 8px;font-size:15px;color:var(--muted)">Styrke</h3>${list(d,'main')}${addRow(d)}`;
+  return `<div class="top"><button class="link" data-act="nav" data-v="more">‹ Mer</button></div>
+  <h1 style="font-size:32px;font-weight:800">Rediger program</h1>
+  <p class="sec-sub" style="margin-top:6px">Endringer gjelder fra neste økt. Historikken din endres ikke.</p>
+  <button class="btn" data-act="pnew" style="margin-top:12px">Ny øvelse</button>
+  ${day(1)}${day(2)}
+  <button class="btn alt" data-act="preset" style="margin-top:20px">${resetArm?'Trykk igjen for å tilbakestille':'Tilbakestill til opprinnelig program'}</button>
+  <p class="sec-sub" style="margin-top:6px">Tilbakestilling gjenoppretter dagsfordeling og navn på de opprinnelige øvelsene. Egne øvelser og historikk beholdes.</p>`;
+}
+function editorView(){
+  const isNew = ed.id == null, ex = isNew ? {n:'', t:'w', s:3, r:10, d:'', v:'', rest:null} : EX[ed.id];
+  const t = ex.t==='w' ? 'w' : 'bw';
+  return `<div class="top"><button class="link" data-act="pcancel">‹ Avbryt</button></div>
+  <h1 style="font-size:28px;font-weight:800">${isNew?'Ny øvelse':'Rediger øvelse'}</h1>
+  <div class="frm">
+   <label class="l" for="f-n">Navn</label><input class="in" id="f-n" type="text" value="${esc(ex.n)}" maxlength="80">
+   <label class="l" for="f-t">Type</label><select id="f-t"><option value="w" ${t==='w'?'selected':''}>Med vekt (logger kg og reps)</option><option value="bw" ${t==='bw'?'selected':''}>Kroppsvekt (logger bare reps)</option></select>
+   <div class="row2"><div style="flex:1"><label class="l" for="f-s">Sett</label><input class="in" id="f-s" type="number" inputmode="numeric" min="1" max="10" value="${ex.s}"></div><div style="flex:1"><label class="l" for="f-r">Repetisjoner</label><input class="in" id="f-r" type="number" inputmode="numeric" min="1" max="100" value="${ex.r}"></div></div>
+   <label class="l" for="f-rest">Pause mellom sett (sekunder)</label><input class="in" id="f-rest" type="number" inputmode="numeric" min="0" max="600" value="${ex.rest!=null?ex.rest:''}" placeholder="Standard (${settings.timer?settings.rest+' s':'av'})">
+   <label class="l" for="f-v">Videolenke (valgfritt)</label><input class="in" id="f-v" type="url" value="${esc(ex.v||'')}" placeholder="https://...">
+   <label class="l" for="f-d">Beskrivelse (valgfritt)</label><textarea class="in" id="f-d">${esc(ex.d||'')}</textarea>
+   ${isNew ? `<label class="l" for="f-add">Legg til i</label><select id="f-add"><option value="">Ikke legg til ennå</option><option value="1:core">Dag 1, kjerne</option><option value="1:main">Dag 1, styrke</option><option value="2:core">Dag 2, kjerne</option><option value="2:main">Dag 2, styrke</option></select>` : ''}
+  </div>
+  <p class="msg" id="fmsg" role="alert"></p>
+  <button class="btn" data-act="psave">${isNew?'Opprett øvelse':'Lagre'}</button>
+  ${!isNew && EX_BASE[ed.id] && program.ex[ed.id] ? `<button class="btn alt" data-act="pexreset">Tilbakestill denne øvelsen</button>` : ''}`;
+}
+function reportRange(){
+  const now = new Date(); let from = null;
+  if(repRange==='4w'){ from = new Date(now); from.setDate(from.getDate()-28); }
+  else if(repRange==='3m'){ from = new Date(now); from.setMonth(from.getMonth()-3); }
+  return sortedSessions().filter(s => !from || new Date(s.date) >= from);
+}
+function reportView(){
+  const list = reportRange();
+  const seg = `<div class="seg noprint">${[['4w','Siste 4 uker'],['3m','3 måneder'],['all','Alt']].map(([k,l]) => `<button data-act="rrange" data-v="${k}" aria-pressed="${repRange===k}">${l}</button>`).join('')}</div>`;
+  const first = list[0], last = list[list.length-1];
+  const period = list.length ? `${dateLong(first.date)} – ${dateLong(last.date)}` : 'Ingen økter i perioden';
+  const totalSets = list.reduce((a,s) => a + Object.values(s.data).reduce((b,arr) => b + work(arr).length, 0), 0);
+  const ids = allIds().filter(id => list.some(s => s.data[id] && s.data[id].length));
+  const summary = ids.map(id => {
+    const ex = EX[id], pts = list.filter(s => s.data[id] && work(s.data[id]).length);
+    if(!pts.length) return '';
+    if(ex.t==='w'){
+      const tops = pts.map(s => Math.max(...work(s.data[id]).map(x => x.kg||0)));
+      return `<tr><td>${id}. ${nm(id)}</td><td class="num">${pts.length}</td><td class="num">${fmt(tops[0])} → ${fmt(tops[tops.length-1])} kg<br><span style="color:var(--muted)">best ${fmt(Math.max(...tops))} kg</span></td></tr>`;
+    }
+    const tot = pts.map(s => work(s.data[id]).reduce((a,x) => a+(x.reps||0), 0));
+    return `<tr><td>${id}. ${nm(id)}</td><td class="num">${pts.length}</td><td class="num">${tot[0]} → ${tot[tot.length-1]} reps</td></tr>`;
+  }).join('');
+  const from = first ? new Date(first.date) : null;
+  const bw = body.filter(b => !from || new Date(b.date) >= new Date(from.getFullYear(), from.getMonth(), from.getDate())).sort((a,b) => a.date.localeCompare(b.date));
+  const bwTxt = bw.length ? `<p>Kroppsvekt: <b class="num">${fmt(bw[0].kg)} → ${fmt(bw[bw.length-1].kg)} kg</b></p>` : '';
+  const log = [...list].reverse().map(s => {
+    const exs = Object.keys(s.data).map(Number).sort((a,b)=>a-b).filter(id => EX[id]).map(id => {
+      const nt = (s.exnotes||{})[id];
+      return `<div style="margin:6px 0"><b>${id}. ${nm(id)}</b><div class="num">${setsText(id, s.data[id], ' · ')}</div>${nt?`<div class="enote">Notat: ${esc(nt)}</div>`:''}</div>`;
+    }).join('');
+    return `<div class="rep-s"><h3>${dateLong(s.date)} · ${DAYS[s.day].title}</h3><div class="m">${s.feel?`Følelse ${s.feel}/5`:'Følelse ikke oppgitt'}</div>${s.note?`<p style="margin:6px 0"><b>Notat:</b> ${esc(s.note)}</p>`:''}${exs}</div>`;
+  }).join('');
+  return `<div class="top noprint"><button class="link" data-act="nav" data-v="more">‹ Mer</button></div>
+  <h1 style="font-size:30px;font-weight:800;margin-bottom:6px">Treningsrapport</h1>
+  ${seg}
+  <p style="margin:12px 0 4px"><b>${period}</b></p>
+  <p style="margin:0 0 8px">${list.length} økter · ${totalSets} sett</p>${bwTxt}
+  <div class="row noprint" style="margin:12px 0"><button class="btn small" data-act="print">Skriv ut / lagre som PDF</button><button class="btn small alt" data-act="csv">Del som CSV</button></div>
+  ${ids.length ? `<h2 class="sec">Oppsummering per øvelse</h2><table><thead><tr><th>Øvelse</th><th>Økter</th><th>Vekt, første → siste</th></tr></thead><tbody>${summary}</tbody></table>` : ''}
+  ${list.length ? `<h2 class="sec">Øktlogg</h2>${log}` : '<div class="empty" style="margin-top:14px">Ingen økter å vise i denne perioden.</div>'}`;
+}
+
+/* ---------- Eksport og sikkerhetskopi ---------- */
+function csvFor(list){
+  const rows = [['Dato','Dag','Øvelse nr','Øvelse','Sett','Oppvarming','Vekt (kg)','Reps','Notat øvelse','Følelse','Notat økt']];
+  list.forEach(s => {
+    Object.keys(s.data).map(Number).sort((a,b)=>a-b).forEach(id => {
+      if(!EX[id]) return; let n = 0;
+      s.data[id].forEach(x => {
+        if(!x.w) n++;
+        rows.push([new Date(s.date).toLocaleDateString('nb-NO'), DAYS[s.day].title, id, EX[id].n, x.w ? '' : n, x.w ? 'ja' : '', x.kg!=null ? String(x.kg).replace('.',',') : '', x.reps, (s.exnotes||{})[id] || '', s.feel || '', s.note || '']);
+      });
+    });
+  });
+  return '\ufeff' + rows.map(r => r.map(c => { c = String(c); return /[;"\n\r]/.test(c) ? '"' + c.replace(/"/g,'""') + '"' : c; }).join(';')).join('\r\n');
+}
+async function shareFile(name, text, mime){
+  try{
+    const f = new File([text], name, {type:mime});
+    if(navigator.canShare && navigator.canShare({files:[f]})){ await navigator.share({files:[f], title:name}); return 'shared'; }
+  }catch(e){ if(e && e.name==='AbortError') return 'abort'; }
+  try{
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], {type:mime})); a.download = name;
+    document.body.appendChild(a); a.click(); a.remove(); return 'download';
+  }catch(e){ return 'fail'; }
+}
+const backupObj = () => ({v:5, exported:new Date().toISOString(), sessions, body, program, settings:{rest:settings.rest, timer:settings.timer, sound:settings.sound, inc:settings.inc, goal:settings.goal}});
+async function exportFile(){
+  const name = 'treningslogg-' + new Date().toISOString().slice(0,10) + '.json';
+  const r = await shareFile(name, JSON.stringify(backupObj(), null, 1), 'application/json');
+  if(r==='abort') return;
+  if(r==='shared' || r==='download'){
+    settings.lastBackup = new Date().toISOString(); settings.snooze = null; saveSettings();
+    toast('Kopien er laget. Lagre den et trygt sted, for eksempel i Filer.');
+    if(view==='home' || view==='more') render();
+  } else toast('Kunne ikke lage filen. Bruk «Vis som tekst» i stedet.');
+}
+function importText(text){
+  const data = JSON.parse(text);
+  const ss = Array.isArray(data) ? data : data.sessions;
+  if(!Array.isArray(ss) || ss.some(s => !s.date || !s.data || !DAYS[s.day])) throw new Error('ugyldig');
+  sessions = ss;
+  if(!Array.isArray(data)){
+    if(Array.isArray(data.body)) body = data.body;
+    if(data.program && typeof data.program==='object') program = Object.assign({ex:{}, days:null, nextId:100}, data.program);
+    if(data.settings) Object.assign(settings, data.settings);
+  }
+  applyProgram(); if(draft) reconcileDraft();
+  save('sessions', sessions); save('body', body); save('program', program); saveSettings();
+}
+
+/* ---------- Økt: lagre og redigere ---------- */
 function persistDraft(){ save('draft', draft); }
-let t = null;
-function persistDraftSoon(){ clearTimeout(t); t = setTimeout(persistDraft, 400); }
+let tmr = null;
+function persistDraftSoon(){ clearTimeout(tmr); tmr = setTimeout(persistDraft, 400); }
 
 function editSession(id){
   const s = sessions.find(x => x.id===id); if(!s) return;
@@ -527,130 +858,195 @@ function editSession(id){
     return;
   }
   if(!draft){
-    const dr = newDraft(s.day), dayIds = new Set([...DAYS[s.day].core, ...DAYS[s.day].main]);
+    const dr = newDraft(s.day);
     dr.editId = s.id; dr.date = s.date; dr.extra = [];
+    const dayIds = new Set([...DAYS[s.day].core, ...DAYS[s.day].main]);
     Object.entries(s.data).forEach(([k, arr]) => {
       const xid = Number(k), ex = EX[xid]; if(!ex) return;
       if(!dayIds.has(xid)) dr.extra.push(xid);
-      const out = arr.map(x => ({kg: x.kg!=null ? fmt(x.kg) : '', reps: String(x.reps), done:true}));
-      for(let i = out.length; i < ex.s; i++) out.push({kg: ex.t==='w' && out.length ? out[out.length-1].kg : '', reps:String(ex.r), done:false});
+      const out = arr.map(x => ({kg: x.kg!=null ? fmt(x.kg) : '', reps:String(x.reps), done:true, w:!!x.w}));
+      out.forEach(o => { if(!o.w) delete o.w; });
+      let nWork = out.filter(o => !o.w).length;
+      for(let i = nWork; i < ex.s; i++){ const prev = out.filter(o => !o.w).slice(-1)[0]; out.push({kg: ex.t==='w' && prev ? prev.kg : '', reps:String(ex.r), done:false}); }
       dr.sets[xid] = out;
     });
     dr.stretch = {}; (s.stretch || []).forEach(x => { dr.stretch[x] = true; });
+    dr.note = s.note || ''; dr.feel = s.feel || null; dr.exnotes = Object.assign({}, s.exnotes || {});
     draft = dr; persistDraft();
   }
   view = 'workout'; wake(true); render(); window.scrollTo(0,0);
 }
-
 function finish(){
-  if(countDone()===0 && !Object.keys(draft.stretch).length){ const m = $('#msg'); if(m){ m.textContent = 'Huk av minst ett sett først.'; m.className = 'err'; } return; }
   const data = {};
-  Object.entries(draft.sets).forEach(([id,sets]) => {
-    const done = sets.filter(s=>s.done).map(s => ({kg: EX[id].t==='w' ? num(s.kg) : null, reps: num(s.reps)||0}));
+  Object.entries(draft.sets).forEach(([id, sets]) => {
+    const done = sets.filter(s => s.done).map(s => { const o = {kg: EX[id].t==='w' ? num(s.kg) : null, reps: num(s.reps)||0}; if(s.w) o.w = true; return o; });
     if(done.length) data[id] = done;
   });
   const editing = draft.editId || null;
   const date = editing ? draft.date : new Date().toISOString();
   const prs = [];
-  Object.entries(data).forEach(([id,sets]) => {
+  Object.entries(data).forEach(([id, sets]) => {
     if(EX[id].t!=='w') return;
-    const mx = Math.max(...sets.map(s=>s.kg||0));
-    let prev = 0; sessions.forEach(s => { if(s.id===editing) return; (s.data[id]||[]).forEach(x => { if(x.kg>prev) prev = x.kg; }); });
+    const w = work(sets); if(!w.length) return;
+    const mx = Math.max(...w.map(s => s.kg||0));
+    let prev = 0; sessions.forEach(s => { if(s.id===editing) return; work(s.data[id]).forEach(x => { if(x.kg>prev) prev = x.kg; }); });
     if(prev>0 && mx>prev) prs.push({id:Number(id), kg:mx, prev});
   });
+  const exnotes = {}; Object.entries(draft.exnotes || {}).forEach(([k,v]) => { if(v && v.trim()) exnotes[k] = v.trim(); });
   const rec = {id: editing || Date.now(), date, day:draft.day, data, stretch:Object.keys(draft.stretch).map(Number)};
+  if(draft.note && draft.note.trim()) rec.note = draft.note.trim();
+  if(draft.feel) rec.feel = draft.feel;
+  if(Object.keys(exnotes).length) rec.exnotes = exnotes;
   if(editing){ rec.edited = new Date().toISOString(); const i = sessions.findIndex(s => s.id===editing); if(i>=0) sessions[i] = rec; else sessions.push(rec); }
   else sessions.push(rec);
   lastSaved = {id:rec.id, day:draft.day, prs, edited:!!editing};
-  draft = null;
+  draft = null; hideRest();
   save('sessions', sessions); save('draft', null);
   wake(false); view = 'done'; render(); window.scrollTo(0,0);
 }
 
+/* ---------- Hendelser ---------- */
+function moveInList(arr, id, dir){ const i = arr.indexOf(id), j = i + dir; if(i<0 || j<0 || j>=arr.length) return; [arr[i], arr[j]] = [arr[j], arr[i]]; }
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-act]'); if(!b) return;
-  const a = b.dataset.act;
-  if(a==='nav'){ view = b.dataset.v; delArm = null; render(); window.scrollTo(0,0); }
+  const a = b.dataset.act, D = b.dataset;
+  if(a==='nav'){ view = D.v; delArm = null; resetArm = false; render(); window.scrollTo(0,0); }
   else if(a==='start'){
-    const day = Number(b.dataset.day);
+    const day = Number(D.day);
     if(draft && (draft.day!==day || draft.editId)){
       const m = $('#hmsg');
       if(m) m.textContent = draft.editId ? 'Du redigerer en lagret økt. Fortsett eller avbryt den først.' : 'Du har en påbegynt ' + DAYS[draft.day].title + '. Fortsett eller forkast den først.';
       return;
     }
     if(!draft) draft = newDraft(day);
-    persistDraft(); view='workout'; wake(true); render(); window.scrollTo(0,0);
+    persistDraft(); view = 'workout'; wake(true); render(); window.scrollTo(0,0);
   }
-  else if(a==='resume'){ view='workout'; wake(true); render(); window.scrollTo(0,0); }
+  else if(a==='resume'){ view = 'workout'; wake(true); render(); window.scrollTo(0,0); }
   else if(a==='discard'){ if(!discArm){ discArm = true; b.textContent = 'Trykk igjen for å bekrefte'; return; } discArm = false; draft = null; save('draft', null); render(); }
-  else if(a==='edit') editSession(Number(b.dataset.id));
-  else if(a==='leave'){ persistDraft(); wake(false); view='home'; render(); window.scrollTo(0,0); }
-  else if(a==='desc'){ const id = b.dataset.id; draft.open[id] = !draft.open[id]; const y = window.scrollY; render(); window.scrollTo(0,y); persistDraftSoon(); }
-  else if(a==='min'){ const id = b.dataset.id; draft.min[id] = !draft.min[id]; const y = window.scrollY; render(); window.scrollTo(0,y); persistDraftSoon(); }
+  else if(a==='edit') editSession(Number(D.id));
+  else if(a==='leave'){ persistDraft(); wake(false); view = 'home'; render(); window.scrollTo(0,0); }
+  else if(a==='desc'){ draft.open[D.id] = !draft.open[D.id]; keepScroll(render); persistDraftSoon(); }
+  else if(a==='min'){ draft.min[D.id] = !draft.min[D.id]; keepScroll(render); persistDraftSoon(); }
   else if(a==='minall' || a==='expall'){
     const d = DAYS[draft.day]; [...d.core, ...d.main].forEach(id => { draft.min[id] = (a==='minall'); });
     render(); window.scrollTo(0,0); persistDraftSoon();
   }
   else if(a==='toggle'){
-    const [id,i] = b.dataset.k.split(':'); const s = draft.sets[id][i];
-    s.done = !s.done; b.setAttribute('aria-pressed', s.done); if(s.done && navigator.vibrate) navigator.vibrate(12);
+    const [id,i] = D.k.split(':'); const s = draft.sets[id][i];
+    s.done = !s.done; b.setAttribute('aria-pressed', s.done);
     b.closest('.set').classList.toggle('done', s.done);
-    const bd = b.closest('.ex').querySelector('.badge'); if(bd) bd.classList.toggle('ok', draft.sets[id].every(x => x.done));
+    const bd = b.closest('.ex').querySelector('.badge'); if(bd) bd.classList.toggle('ok', work(draft.sets[id]).every(x => x.done));
+    if(s.done){ unlockAudio(); const ex = EX[id]; startRest(ex.rest!=null ? ex.rest : settings.rest); if(navigator.vibrate) try{ navigator.vibrate(12); }catch(err){} }
     updateCounter(); persistDraftSoon();
   }
-  else if(a==='stretch'){
-    const id = b.dataset.id; if(draft.stretch[id]) delete draft.stretch[id]; else draft.stretch[id] = true;
-    b.setAttribute('aria-pressed', !!draft.stretch[id]); persistDraftSoon();
+  else if(a==='usesug'){
+    (draft.sets[D.id] || []).forEach(s => { if(!s.done && !s.w) s.kg = fmt(Number(D.kg)); });
+    keepScroll(render); persistDraftSoon();
   }
+  else if(a==='warm'){
+    const sets = draft.sets[D.id], first = sets.find(x => !x.w), k = num(first && first.kg);
+    const kg = k ? fmt(Math.max(0, Math.round(k*0.5/2.5)*2.5)) : '';
+    sets.splice(sets.filter(x => x.w).length, 0, {kg, reps:'10', done:false, w:true});
+    keepScroll(render); persistDraftSoon();
+  }
+  else if(a==='rmwarm'){
+    const sets = draft.sets[D.id]; let idx = -1; sets.forEach((x,i) => { if(x.w) idx = i; });
+    if(idx>=0) sets.splice(idx,1);
+    keepScroll(render); persistDraftSoon();
+  }
+  else if(a==='stretch'){ const id = D.id; if(draft.stretch[id]) delete draft.stretch[id]; else draft.stretch[id] = true; b.setAttribute('aria-pressed', !!draft.stretch[id]); persistDraftSoon(); }
+  else if(a==='feel'){ const v = Number(D.v); draft.feel = draft.feel===v ? null : v; keepScroll(render); persistDraftSoon(); }
   else if(a==='finish'){
     if(countDone()===0 && !Object.keys(draft.stretch).length){ const m = $('#msg'); if(m){ m.textContent = 'Huk av minst ett sett først.'; m.className = 'err'; } }
     else { confirming = true; renderNav(); updateCounter(); }
   }
   else if(a==='finishyes'){ confirming = false; finish(); }
   else if(a==='finishno'){ confirming = false; renderNav(); updateCounter(); }
-  else if(a==='hmode'){ histMode = b.dataset.m; render(); }
-  else if(a==='metric'){ metric = b.dataset.m; render(); }
+  else if(a==='restx') hideRest();
+  else if(a==='restadd'){ rest.end = Math.max(rest.end, Date.now()) + 15000; rest.mode = null; clearInterval(rest.iv); rest.iv = setInterval(tickRest, 250); tickRest(); }
+  else if(a==='hint'){ hintDismissed = true; save('hintDismissed', true); render(); }
+  else if(a==='snooze'){ settings.snooze = Date.now(); saveSettings(); render(); }
+  else if(a==='pmode'){ progMode = D.m; render(); }
+  else if(a==='metric'){ metric = D.m; render(); }
+  else if(a==='hmode'){ histMode = D.m; render(); }
   else if(a==='del'){
-    const id = Number(b.dataset.id);
-    if(delArm===id){ sessions = sessions.filter(s=>s.id!==id); delArm=null; save('sessions', sessions); render(); }
+    const id = Number(D.id);
+    if(delArm===id){ sessions = sessions.filter(s => s.id!==id); delArm = null; save('sessions', sessions); render(); }
     else { delArm = id; b.textContent = 'Trykk igjen for å slette'; }
   }
-  else if(a==='hint'){ hintDismissed = true; save('hintDismissed', true); render(); }
+  else if(a==='badd'){
+    const kg = num($('#b-kg').value), ds = $('#b-date').value, m = $('#bmsg');
+    if(kg==null || kg<20 || kg>400){ m.textContent = 'Skriv inn en vekt mellom 20 og 400 kg.'; return; }
+    const p = (ds || '').split('-').map(Number); const dt = p.length===3 ? new Date(p[0], p[1]-1, p[2], 12) : new Date();
+    body.push({id:Date.now(), date:dt.toISOString(), kg}); save('body', body); render();
+  }
+  else if(a==='bgoal'){ const g = num($('#b-goal').value); settings.goal = (g!=null && g>=20 && g<=400) ? g : null; saveSettings(); render(); }
+  else if(a==='bdel'){
+    const id = Number(D.id);
+    if(bodyDel===id){ body = body.filter(x => x.id!==id); bodyDel = null; save('body', body); render(); }
+    else { bodyDel = id; b.textContent = 'Sikker?'; }
+  }
+  else if(a==='setrest'){ const v = Number(D.v); if(v===0) settings.timer = false; else { settings.timer = true; settings.rest = v; } saveSettings(); if(!settings.timer) hideRest(); render(); }
+  else if(a==='setsound'){ settings.sound = D.v==='1'; saveSettings(); if(settings.sound){ unlockAudio(); } render(); }
+  else if(a==='setinc'){ settings.inc = Number(D.v); saveSettings(); render(); }
+  /* program */
+  else if(a==='pmove'){ moveInList(DAYS[D.day][D.sec], Number(D.id), Number(D.dir)); saveProgram(); keepScroll(render); }
+  else if(a==='pday'){
+    const id = Number(D.id), from = DAYS[D.day][D.sec], to = DAYS[D.day==='1'?2:1][D.sec];
+    from.splice(from.indexOf(id),1); to.push(id); saveProgram(); keepScroll(render);
+  }
+  else if(a==='prm'){ const arr = DAYS[D.day][D.sec]; arr.splice(arr.indexOf(Number(D.id)),1); saveProgram(); keepScroll(render); toast('Øvelsen er fjernet fra dagen. Du kan legge den til igjen nederst.'); }
+  else if(a==='padd'){ const sel = $('#padd-'+D.day); if(!sel) return; DAYS[D.day][D.sec].push(Number(sel.value)); saveProgram(); keepScroll(render); }
+  else if(a==='pedit'){ ed = {id:Number(D.id)}; view = 'exedit'; render(); window.scrollTo(0,0); }
+  else if(a==='pnew'){ ed = {id:null}; view = 'exedit'; render(); window.scrollTo(0,0); }
+  else if(a==='pcancel'){ ed = null; view = 'program'; render(); window.scrollTo(0,0); }
+  else if(a==='psave'){
+    const n = $('#f-n').value.trim(), m = $('#fmsg');
+    if(!n){ m.textContent = 'Øvelsen må ha et navn.'; return; }
+    const clamp = (v, lo, hi, def) => { const x = parseInt(v, 10); return isNaN(x) ? def : Math.min(hi, Math.max(lo, x)); };
+    const obj = {n, t:$('#f-t').value, s:clamp($('#f-s').value,1,10,3), r:clamp($('#f-r').value,1,100,10), d:$('#f-d').value.trim(), v:$('#f-v').value.trim()};
+    const rs = $('#f-rest').value.trim(); obj.rest = rs==='' ? null : clamp(rs,0,600,60);
+    if(obj.v && !/^https?:\/\//i.test(obj.v)){ m.textContent = 'Videolenken må starte med https://'; return; }
+    if(ed.id==null){
+      const id = program.nextId++; program.ex[id] = obj; EX[id] = Object.assign({}, obj);
+      const add = $('#f-add') ? $('#f-add').value : '';
+      if(add){ const [dy, sc] = add.split(':'); DAYS[dy][sc].push(id); }
+    } else {
+      if(!obj.d && EX_BASE[ed.id]) delete obj.d;
+      program.ex[ed.id] = Object.assign({}, program.ex[ed.id] || {}, obj); EX[ed.id] = Object.assign({}, EX[ed.id], obj);
+    }
+    ed = null; saveProgram(); view = 'program'; render(); window.scrollTo(0,0); toast('Lagret.');
+  }
+  else if(a==='pexreset'){ delete program.ex[ed.id]; applyProgram(); ed = null; saveProgram(); view = 'program'; render(); window.scrollTo(0,0); }
+  else if(a==='preset'){
+    if(!resetArm){ resetArm = true; render(); return; }
+    resetArm = false; program.days = null; Object.keys(program.ex).forEach(k => { if(EX_BASE[k]) delete program.ex[k]; });
+    applyProgram(); saveProgram(); render(); toast('Programmet er tilbakestilt.');
+  }
+  /* rapport og eksport */
+  else if(a==='rrange'){ repRange = D.v; render(); }
+  else if(a==='print'){ window.print(); }
+  else if(a==='csv'){ shareFile('treningslogg-' + repRange + '.csv', csvFor(reportRange()), 'text/csv').then(r => { if(r==='fail') toast('Kunne ikke lage filen.'); }); }
   else if(a==='exportfile') exportFile();
-  else if(a==='export'){ $('#bk').value = JSON.stringify(sessions); $('#bk').select(); $('#bkmsg').textContent = 'Kopier teksten og ta vare på den.'; }
+  else if(a==='export'){ const t = $('#bk'); if(!t) return; t.style.display = 'block'; t.value = JSON.stringify(backupObj()); t.select(); $('#bkmsg').textContent = 'Kopier teksten og ta vare på den.'; settings.lastBackup = new Date().toISOString(); saveSettings(); }
   else if(a==='import'){
-    try{
-      const arr = JSON.parse($('#bk').value);
-      if(!Array.isArray(arr) || arr.some(s=>!s.date||!s.data||!DAYS[s.day])) throw new Error();
-      sessions = arr; save('sessions', sessions); render();
-    }catch(err){ $('#bkmsg').textContent = 'Teksten er ikke en gyldig sikkerhetskopi. Lim inn hele teksten fra en eksport.'; }
+    const t = $('#bk');
+    try{ if(!t || !t.value.trim()) throw new Error('tom'); importText(t.value); render(); toast('Sikkerhetskopien er gjenopprettet.'); }
+    catch(err){ if(t) t.style.display = 'block'; $('#bkmsg').textContent = 'Velg en fil, eller lim inn hele teksten fra en eksport i feltet over, og trykk Importer.'; }
   }
 });
-document.addEventListener('focusin', e => { if(e.target.matches('.field input')) setTimeout(()=>e.target.select(), 0); });
+document.addEventListener('focusin', e => { if(e.target.matches('.field input')) setTimeout(() => e.target.select(), 0); });
 document.addEventListener('input', e => {
-  const el = e.target;
-  if(el.dataset.kg){ const [id,i] = el.dataset.kg.split(':'); draft.sets[id][i].kg = el.value; persistDraftSoon(); }
-  else if(el.dataset.reps){ const [id,i] = el.dataset.reps.split(':'); draft.sets[id][i].reps = el.value; persistDraftSoon(); }
+  const el = e.target, D = el.dataset;
+  if(D.kg){ const [id,i] = D.kg.split(':'); draft.sets[id][i].kg = el.value; persistDraftSoon(); }
+  else if(D.reps){ const [id,i] = D.reps.split(':'); draft.sets[id][i].reps = el.value; persistDraftSoon(); }
+  else if(D.exnote){ draft.exnotes[D.exnote] = el.value; persistDraftSoon(); }
+  else if(D.note){ draft.note = el.value; persistDraftSoon(); }
 });
-async function exportFile(){
-  const json = JSON.stringify(sessions, null, 1);
-  const name = 'treningslogg-' + new Date().toISOString().slice(0,10) + '.json';
-  const msg = $('#bkmsg');
-  try{
-    const file = new File([json], name, {type:'application/json'});
-    if(navigator.canShare && navigator.canShare({files:[file]})){
-      await navigator.share({files:[file], title:'Treningslogg'});
-      msg.textContent = 'Kopien er delt. Velg «Arkiver i Filer» for å lagre den.';
-      return;
-    }
-  }catch(err){ if(err && err.name==='AbortError') return; }
-  $('#bk').value = json; $('#bk').select();
-  msg.textContent = 'Fil-deling støttes ikke her. Kopier teksten og ta vare på den.';
-}
 document.addEventListener('change', e => {
   if(e.target.id==='bkfile' && e.target.files[0]){
     const r = new FileReader();
-    r.onload = () => { $('#bk').value = r.result; $('#bkmsg').textContent = 'Filen er lest. Trykk Importer for å gjenopprette.'; };
+    r.onload = () => { const t = $('#bk'); t.style.display = 'block'; t.value = r.result; $('#bkmsg').textContent = 'Filen er lest. Trykk Importer for å gjenopprette.'; };
     r.readAsText(e.target.files[0]);
   }
   if(e.target.id==='exsel'){ progEx = Number(e.target.value); metric = null; render(); }
@@ -661,12 +1057,15 @@ document.addEventListener('change', e => {
   try{ if(navigator.storage && navigator.storage.persist) navigator.storage.persist(); }catch(e){}
   hintDismissed = await load('hintDismissed', false);
   sessions = await load('sessions', []);
+  body = await load('body', []);
+  program = Object.assign({ex:{}, days:null, nextId:100}, await load('program', {}));
+  settings = Object.assign(settings, await load('settings', {}));
   draft = await load('draft', null);
+  applyProgram();
   if(draft && !DAYS[draft.day]) draft = null;
   if(draft) reconcileDraft();
   render();
 })();
-
 if('serviceWorker' in navigator){
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./sw.js')
@@ -675,6 +1074,7 @@ if('serviceWorker' in navigator){
       .catch(() => {});
   });
 }
+
 </script>
 </body>
 </html>
